@@ -41,16 +41,22 @@ public class Ella {
         Scanner in = new Scanner(System.in);
         while(in.hasNextLine()) {
             String line = in.nextLine();
+
             if (line.equals("bye")) {
                 break;
             }
 
-            if (line.equals("list")) {
-                printTasks(tasks);
+            switch (line) {
+                case "list":
+                    printLines();
+                    printTasks(tasks);
+                    printLines();
+                    break;
+                default:
+                    printLines();
+                    process(line, tasks);
+                    printLines();
             }
-            printLines();
-            process(line, tasks);
-            printLines();
         }
 
         printLines();
