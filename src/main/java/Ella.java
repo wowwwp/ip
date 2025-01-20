@@ -6,7 +6,7 @@ public class Ella {
 
     public static void printLines() {
         int CONSOLE_WIDTH = 80;
-        String line = "\u2500".repeat(CONSOLE_WIDTH);
+        String line = "-".repeat(CONSOLE_WIDTH);
         System.out.println(line);
     }
 
@@ -102,11 +102,6 @@ public class Ella {
                     printTasks(tasks);
                     printLines();
                     break;
-                default:
-                    printLines();
-                    Task task = new Task(line);
-                    process(task, tasks);
-                    printLines();
             }
         }
 
