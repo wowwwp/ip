@@ -9,13 +9,13 @@ public class Task {
 
     public void markAsDone() {
         this.isDone = true;
-        System.out.println("Wow someone was productive\n");
+        System.out.println("Wow someone was productive");
         System.out.println(this);
     }
 
     public void markAsUndone() {
         this.isDone = false;
-        System.out.println("Well i guess this is a future you problem\n");
+        System.out.println("Well i guess this is a future you problem");
         System.out.println(this);
     }
 
