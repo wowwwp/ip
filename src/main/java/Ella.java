@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ella {
@@ -16,10 +17,26 @@ public class Ella {
         System.out.println("Bye... I know you will come back soon!");
     }
 
+    public static void process(String task, ArrayList<String> tasks) {
+        tasks.add(task);
+        System.out.printf("added: %s\n", task);
+    }
+
+    public static void printTasks(ArrayList<String> tasks) {
+        String tasksString = "";
+
+        for (int i = 0; i < tasks.size(); i++) {
+            tasksString += (i + 1) + ". " + tasks.get(i) + "\n";
+        }
+        System.out.print(tasksString);
+    }
+
     public static void main(String[] args) {
         printLines();
         greet();
         printLines();
+
+        ArrayList<String> tasks = new ArrayList<>();
 
         Scanner in = new Scanner(System.in);
         while(in.hasNextLine()) {
@@ -27,8 +44,12 @@ public class Ella {
             if (line.equals("bye")) {
                 break;
             }
+
+            if (line.equals("list")) {
+                printTasks(tasks);
+            }
             printLines();
-            System.out.println(line);
+            process(line, tasks);
             printLines();
         }
 
