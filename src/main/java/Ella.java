@@ -17,18 +17,21 @@ public class Ella {
         System.out.println("Bye... I know you will come back soon!");
     }
 
-    public static void process(String task, ArrayList<String> tasks) {
+    public static void process(Task task, ArrayList<Task> tasks) {
         tasks.add(task);
-        System.out.printf("added: %s\n", task);
+        System.out.printf("added: %s\n", task.getDescription());
     }
 
-    public static void printTasks(ArrayList<String> tasks) {
-        String tasksString = "";
-
+    public static void printTasks(ArrayList<Task> tasks) {
+        System.out.println("This is what you got");
         for (int i = 0; i < tasks.size(); i++) {
-            tasksString += (i + 1) + ". " + tasks.get(i) + "\n";
+            System.out.printf("%d.%s%n", i + 1, tasks.get(i));
         }
-        System.out.print(tasksString);
+
+    }
+
+    public static Task getTask(String id, ArrayList<Task> tasks) {
+        return tasks.get(Integer.parseInt(id) - 1);
     }
 
     public static void main(String[] args) {
@@ -36,17 +39,31 @@ public class Ella {
         greet();
         printLines();
 
-        ArrayList<String> tasks = new ArrayList<>();
+        ArrayList<Task> tasks = new ArrayList<>();
 
         Scanner in = new Scanner(System.in);
         while(in.hasNextLine()) {
             String line = in.nextLine();
+            String[] split = line.split(" ");
+            String command = split[0];
 
-            if (line.equals("bye")) {
+            if (command.equals("bye")) {
                 break;
             }
 
-            switch (line) {
+            switch (command) {
+                case "mark":
+                    Task taskDone = getTask(split[1], tasks);
+                    printLines();
+                    taskDone.markAsDone();
+                    printLines();
+                    break;
+                case "unmark":
+                    Task taskUndone = getTask(split[1], tasks);
+                    printLines();
+                    taskUndone.markAsUndone();
+                    printLines();
+                    break;
                 case "list":
                     printLines();
                     printTasks(tasks);
@@ -54,7 +71,8 @@ public class Ella {
                     break;
                 default:
                     printLines();
-                    process(line, tasks);
+                    Task task = new Task(line);
+                    process(task, tasks);
                     printLines();
             }
         }
