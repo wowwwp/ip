@@ -41,14 +41,30 @@ public class Ella {
     }
 
     public static void checkValidity(String[] split, String message) throws InvalidCommand {
-        if (split.length != 2) {
+        if (split.length < 2) {
             throw new InvalidCommand(message);
         }
     }
 
-    public static Task getTask(String[] split, ArrayList<Task> tasks) throws InvalidCommand{
-        checkValidity(split, "You need to give me a valid task number....");
-        int id = Integer.parseInt(split[1]);
+    public static void checkInputFormat(String[] split, int expectedArguments,String message) throws InvalidCommand {
+        if (split.length != expectedArguments) {
+            throw new InvalidCommand(message);
+        }
+        for (String arg: split) {
+            if (arg.isBlank()) {
+                throw new InvalidCommand(message);
+            }
+        }
+    }
+
+
+    public static Task getTask(String[] splits, ArrayList<Task> tasks) throws InvalidCommand{
+        // Check if task number is present
+        checkValidity(splits, "You need to give me a valid task number....");
+        // Check if only 1 task number is present
+        checkInputFormat(splits, 2, "You can only have one task number...");
+        // Parse integer
+        int id = Integer.parseInt(splits[1]);
         if (id < 0 || id > tasks.size()) {
             throw new InvalidCommand("That task does not exist.....");
         }
@@ -61,22 +77,23 @@ public class Ella {
     }
     public static String[] parseDeadline(String[] splits) throws IndexOutOfBoundsException{
         // Check if task is present
-        checkValidity(splits, "You need to have a task for deadline!!");
-        // Check if deadline is present
+        checkValidity(splits, "Uhh you are not following the format for deadline...");
+        // Check if input format for deadline is correct
         String[] splitsDeadline = splits[1].split("/by");
-        checkValidity(splitsDeadline, "You need to have a time after the /by field!!");
+        checkInputFormat(splitsDeadline, 2, "Uhh you are not following the format for deadline...");
         return splitsDeadline;
     }
 
     public static String[] parseEvent(String[] splits) {
         // Check if task is present
-        checkValidity(splits, "You need to have a task for event!!");
-        // Check if from for the task is present
+        checkValidity(splits, "Uhh you are not following the format for event...");
+        // Check if there is date after /from
         String[] splitOne = splits[1].split("/from");
-        checkValidity(splitOne, "You need to have a time after the /from field!!");
-        // Check if to for the task is present
+        // Check if there is task
+        checkInputFormat(splitOne, 2,"Uhh you are not following the format for event...");
+        // Check if there is /from and /to
         String[] splitTwo = splitOne[1].split("/to");
-        checkValidity(splitTwo, "You need to have a time after the /to field!!");
+        checkInputFormat(splitTwo, 2, "Uhh you are not following the format for event...");
         return new String[]{splitOne[0], splitTwo[0], splitTwo[1]};
     }
 
@@ -99,6 +116,7 @@ public class Ella {
             try {
                 // parse command
                 String line = in.nextLine();
+                line = line.trim();
                 String[] split = line.split(" ", 2);
                 String command = split[0];
 
@@ -142,6 +160,8 @@ public class Ella {
                 }
             } catch (InvalidCommand e) {
                 printErrors(e);
+            } catch (NumberFormatException e) {
+                printErrors(new NumberFormatException("You need to give me valid task number..."));
             }
         }
 
