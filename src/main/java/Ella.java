@@ -60,9 +60,9 @@ public class Ella {
 
     public static Task getTask(String[] splits, ArrayList<Task> tasks) throws InvalidCommand{
         // Check if task number is present
-        checkValidity(splits, "You need to give me a valid task number....");
+        checkValidity(splits, "You need to give me a valid task number...");
         // Check if task number is empty
-        checkInputFormat(splits, 2, "You can only have one task number...");
+        checkInputFormat(splits, 2, "You need to give me a valid task number...");
         // Parse integer
         int id = Integer.parseInt(splits[1]);
         if (id < 0 || id > tasks.size()) {
@@ -102,6 +102,12 @@ public class Ella {
         printLines();
     }
 
+    public static void deleteTask(Task task, ArrayList<Task> tasks) {
+        printLines();
+        tasks.remove(task);
+        System.out.printf("Ok got ya...I will remove this from the list...%n%s%nYou have %d tasks left%n", task.toString(), tasks.size());
+        printLines();
+    }
 
     public static void main(String[] args) {
         greet();
@@ -151,6 +157,10 @@ public class Ella {
                         taskUndone.markAsUndone();
                         printLines();
                         break;
+                    case "delete":
+                        Task taskDeleted = getTask(split, tasks);
+                        deleteTask(taskDeleted, tasks);
+                        break;
                     case "list":
                         printTasks(tasks);
                         break;
@@ -160,7 +170,7 @@ public class Ella {
             } catch (InvalidCommand e) {
                 printErrors(e);
             } catch (NumberFormatException e) {
-                printErrors(new NumberFormatException("You need to give me valid task number..."));
+                printErrors(new NumberFormatException("You need to give me a valid task number..."));
             }
         }
 
