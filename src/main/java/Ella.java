@@ -61,7 +61,7 @@ public class Ella {
     public static Task getTask(String[] splits, ArrayList<Task> tasks) throws InvalidCommand{
         // Check if task number is present
         checkValidity(splits, "You need to give me a valid task number....");
-        // Check if only 1 task number is present
+        // Check if task number is empty
         checkInputFormat(splits, 2, "You can only have one task number...");
         // Parse integer
         int id = Integer.parseInt(splits[1]);
@@ -76,24 +76,23 @@ public class Ella {
         return splits[1];
     }
     public static String[] parseDeadline(String[] splits) throws IndexOutOfBoundsException{
-        // Check if task is present
-        checkValidity(splits, "Uhh you are not following the format for deadline...");
+        // Check if its empty after deadline
+        checkValidity(splits, "Uhh you need to have a task and a date after the /by field...");
         // Check if input format for deadline is correct
         String[] splitsDeadline = splits[1].split("/by");
-        checkInputFormat(splitsDeadline, 2, "Uhh you are not following the format for deadline...");
+        checkInputFormat(splitsDeadline, 2, "Uhh you don't have a task or a date after the /by field...");
         return splitsDeadline;
     }
 
     public static String[] parseEvent(String[] splits) {
-        // Check if task is present
-        checkValidity(splits, "Uhh you are not following the format for event...");
-        // Check if there is date after /from
+        // Check if its empty after event
+        checkValidity(splits, "Uhh you need to have a task, a date after the /from field and a date after the /to field...");
+        // Check if there is task and a date after /from
         String[] splitOne = splits[1].split("/from");
-        // Check if there is task
-        checkInputFormat(splitOne, 2,"Uhh you are not following the format for event...");
+        checkInputFormat(splitOne, 2,"Uhh you don't have a task or a date after the /from field...");
         // Check if there is /from and /to
         String[] splitTwo = splitOne[1].split("/to");
-        checkInputFormat(splitTwo, 2, "Uhh you are not following the format for event...");
+        checkInputFormat(splitTwo, 2, "Uhh you don't have a date after the /from field or the /to field...");
         return new String[]{splitOne[0], splitTwo[0], splitTwo[1]};
     }
 
