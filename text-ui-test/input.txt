@@ -27,4 +27,8 @@ todo
 unmark 2 4 6
 mark 4-2-6
 mark $
+delete 3
+delete
+delete 900
+delete a
 bye
