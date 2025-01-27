@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Ella {
@@ -146,6 +147,7 @@ public class Ella {
 
     public static void arrangeTasks(ArrayList<Task> tasks) {
         List<Task> sortedTasks = tasks.stream()
+                .filter(task -> !task.isDone)
                 .sorted(new TaskComparator())
                 .collect(Collectors.toList());
         printLines();
