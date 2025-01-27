@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -36,14 +37,17 @@ public class Storage {
                     tasks.add(toDo);
                     break;
                 case "Deadline":
-                    String date = jsonTask.get("dates").getAsJsonArray().get(0).getAsString();
+                    String deadlineString = jsonTask.get("dates").getAsJsonArray().get(0).getAsString();
+                    LocalDateTime date = LocalDateTime.parse(deadlineString);
                     Deadline deadline = new Deadline(jsonTask.get("name").getAsString(), jsonTask.get("completed").getAsBoolean(), date);
                     tasks.add(deadline);
                     break;
                 case "Event":
                     JsonArray dates = jsonTask.get("dates").getAsJsonArray();
-                    String from = dates.get(0).getAsString();
-                    String to = dates.get(1).getAsString();
+                    String fromString = dates.get(0).getAsString();
+                    LocalDateTime from = LocalDateTime.parse(fromString);
+                    String toString = dates.get(1).getAsString();
+                    LocalDateTime to = LocalDateTime.parse(toString);
                     Event event = new Event(jsonTask.get("name").getAsString(), jsonTask.get("completed").getAsBoolean(), from, to);
                     tasks.add(event);
                     break;
@@ -60,10 +64,11 @@ public class Storage {
         jsonObject.addProperty("type", task.getClass().getSimpleName());
         jsonObject.addProperty("completed", task.isDone);
         jsonObject.addProperty("name", task.description);
-        String[] dates = task.getDates();
+        LocalDateTime[] dates = task.getDates();
         JsonArray jsonArray = new JsonArray();
-        for (String date : dates) {
-            jsonArray.add(date);
+        for (LocalDateTime date : dates) {
+            String dateString = date.toString();
+            jsonArray.add(dateString);
         }
         jsonObject.add("dates", jsonArray);
         return jsonObject;
