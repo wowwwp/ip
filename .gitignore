@@ -6,6 +6,9 @@
 # Java .class files
 *.class
 
+# data files
+/data/
+
 # Gradle build files
 /.gradle/
 /build/
