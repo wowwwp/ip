@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+
 public class ToDo extends Task{
 
     public ToDo(String description) {
@@ -9,8 +11,10 @@ public class ToDo extends Task{
     }
 
     @Override
-    public String[] getDates() {
-        return new String[0];
+    public LocalDateTime[] getDates() {
+        return new LocalDateTime[0];
+    }
+
     }
 
     @Override

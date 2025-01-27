@@ -1,6 +1,10 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public abstract class Task {
     protected String description;
     protected boolean isDone;
+    protected DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy h:mma");
 
     public Task(String description) {
         this.description = description;
@@ -24,7 +28,7 @@ public abstract class Task {
         System.out.println(this);
     }
 
-    public abstract String[] getDates();
+    public abstract LocalDateTime[] getDates();
 
     public String getDescription() {
         return description;
