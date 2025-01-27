@@ -111,7 +111,7 @@ public class Ella {
         printLines();
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         greet();
 
         // Initialize array to store tasks
@@ -124,7 +124,6 @@ public class Ella {
         } catch (IndexOutOfBoundsException e) {
             printErrors(new IndexOutOfBoundsException("Erm there has been issues with the loading the tasks...Did you do something.."));
         }
-
         Scanner in = new Scanner(System.in);
 
         while(in.hasNextLine()) {
@@ -184,7 +183,11 @@ public class Ella {
             }
         }
 
-        storage.updateTasks(tasks);
+        try {
+            storage.updateTasks(tasks);
+        } catch (IOException e) {
+            printErrors(new IOException("There has been some error saving your file :( Your tasks are not saved.."));
+        }
         exit();
     }
 }
