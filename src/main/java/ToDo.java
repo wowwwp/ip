@@ -15,6 +15,8 @@ public class ToDo extends Task{
         return new LocalDateTime[0];
     }
 
+    public LocalDateTime compareDate() {
+        return LocalDateTime.of(9999, 12, 31, 23, 59);
     }
 
     @Override

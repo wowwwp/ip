@@ -29,6 +29,7 @@ public abstract class Task {
     }
 
     public abstract LocalDateTime[] getDates();
+    public abstract LocalDateTime compareDate();
 
     public String getDescription() {
         return description;

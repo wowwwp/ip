@@ -21,6 +21,8 @@ public class Event extends Task{
         return new LocalDateTime[]{from,to};
     }
 
+    public LocalDateTime compareDate() {
+        return from;
     }
 
     @Override

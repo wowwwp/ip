@@ -18,6 +18,8 @@ public class Deadline extends Task{
         return new LocalDateTime[]{by};
     }
 
+    public LocalDateTime compareDate() {
+        return by;
     }
 
     @Override
