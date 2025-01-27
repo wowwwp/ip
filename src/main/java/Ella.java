@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -109,11 +111,19 @@ public class Ella {
         printLines();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         greet();
 
         // Initialize array to store tasks
+        Storage storage = new Storage();
         ArrayList<Task> tasks = new ArrayList<>();
+        try {
+            tasks = storage.loadTasks();
+        } catch (FileNotFoundException e) {
+            printErrors(e);
+        } catch (IndexOutOfBoundsException e) {
+            printErrors(new IndexOutOfBoundsException("Erm there has been issues with the loading the tasks...Did you do something.."));
+        }
 
         Scanner in = new Scanner(System.in);
 
@@ -174,7 +184,7 @@ public class Ella {
             }
         }
 
-
+        storage.updateTasks(tasks);
         exit();
     }
 }
