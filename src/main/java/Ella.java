@@ -139,6 +139,19 @@ public class Ella {
         printLines();
     }
 
+    public static void arrangeTasks(ArrayList<Task> tasks) {
+        List<Task> sortedTasks = tasks.stream()
+                .sorted(new TaskComparator())
+                .collect(Collectors.toList());
+        printLines();
+        System.out.println("Ok here are your tasks arranged by deadline");
+        for (Task task : sortedTasks) {
+            System.out.println(task);
+        }
+        printLines();
+
+    }
+
     public static void main(String[] args) {
         greet();
 
