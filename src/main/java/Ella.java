@@ -1,8 +1,10 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Ella {
 
@@ -77,6 +79,13 @@ public class Ella {
         checkValidity(splits, "You need to have a task for todo!!");
         return splits[1];
     }
+
+    public static LocalDateTime parseTime(String time) {
+        time = time.trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+        LocalDateTime date = LocalDateTime.parse(time, formatter);
+        return date;
+    }
     public static String[] parseDeadline(String[] splits) throws IndexOutOfBoundsException{
         // Check if its empty after deadline
         checkValidity(splits, "Uhh you need to have a task and a date after the /by field...");
@@ -84,6 +93,19 @@ public class Ella {
         String[] splitsDeadline = splits[1].split("/by");
         checkInputFormat(splitsDeadline, 2, "Uhh you don't have a task or a date after the /by field...");
         return splitsDeadline;
+    }
+
+    public static Deadline createDeadline(String[] splits) {
+        String[] splitsDeadline = parseDeadline(splits);
+        LocalDateTime by = parseTime(splitsDeadline[1]);
+        return new Deadline(splitsDeadline[0], by);
+    }
+
+    public static Event createEvent(String[] splits) {
+        String[] splitsEvent = parseEvent(splits);
+        LocalDateTime from = parseTime(splitsEvent[1]);
+        LocalDateTime to = parseTime(splitsEvent[2]);
+        return new Event(splitsEvent[0], from, to);
     }
 
     public static String[] parseEvent(String[] splits) {
@@ -101,6 +123,12 @@ public class Ella {
     public static void printErrors(Exception e) {
         printLines();
         System.out.println(e.getMessage());
+        printLines();
+    }
+
+    public static void printErrors(String message) {
+        printLines();
+        System.out.println(message);
         printLines();
     }
 
@@ -122,7 +150,9 @@ public class Ella {
         } catch (FileNotFoundException e) {
             printErrors(e);
         } catch (IndexOutOfBoundsException e) {
-            printErrors(new IndexOutOfBoundsException("Erm there has been issues with the loading the tasks...Did you do something.."));
+            printErrors("Erm there has been issues with the loading the tasks...Did you do something..");
+        } catch (DateTimeParseException e) {
+            printErrors("So the dates were not stored correctly in your file..We have to start over.....");
         }
         Scanner in = new Scanner(System.in);
 
@@ -145,13 +175,11 @@ public class Ella {
                         process(todo, tasks);
                         break;
                     case "deadline":
-                        String[] parsedDeadline = parseDeadline(split);
-                        Deadline deadline = new Deadline(parsedDeadline[0], parsedDeadline[1]);
+                        Deadline deadline = createDeadline(split);
                         process(deadline, tasks);
                         break;
                     case "event":
-                        String[] parsedEvent = parseEvent(split);
-                        Event event = new Event(parsedEvent[0], parsedEvent[1], parsedEvent[2]);
+                        Event event = createEvent(split);
                         process(event, tasks);
                         break;
                     case "mark":
@@ -173,20 +201,25 @@ public class Ella {
                     case "list":
                         printTasks(tasks);
                         break;
+                    case "arrange":
+                        arrangeTasks(tasks);
+                        break;
                     default:
                         throw new InvalidCommand("So that does not exist...You need to check what you are saying...");
                 }
             } catch (InvalidCommand e) {
                 printErrors(e);
             } catch (NumberFormatException e) {
-                printErrors(new NumberFormatException("You need to give me a valid task number..."));
+                printErrors("You need to give me a valid task number...");
+            } catch (DateTimeParseException e) {
+                printErrors("You got to follow the foramt to enter dates it is like dd/mm/yyyy Hhmm");
             }
         }
 
         try {
             storage.updateTasks(tasks);
         } catch (IOException e) {
-            printErrors(new IOException("There has been some error saving your file :( Your tasks are not saved.."));
+            printErrors("There has been some error saving your file :( Your tasks are not saved..");
         }
         exit();
     }
