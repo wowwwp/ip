@@ -1,5 +1,6 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -84,6 +85,10 @@ public class Ella {
         time = time.trim();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
         LocalDateTime date = LocalDateTime.parse(time, formatter);
+        LocalDateTime MAX_DATE = LocalDateTime.of(3035, 12, 31, 23, 59);
+        if (date.isAfter(MAX_DATE)) {
+            throw new DateTimeException("That is way too far ahead come on....");
+        }
         return date;
     }
     public static String[] parseDeadline(String[] splits) throws IndexOutOfBoundsException{
@@ -226,6 +231,8 @@ public class Ella {
                 printErrors("You need to give me a valid task number...");
             } catch (DateTimeParseException e) {
                 printErrors("You got to follow the foramt to enter dates it is like dd/mm/yyyy Hhmm");
+            } catch (DateTimeException e) {
+                printErrors(e);
             }
         }
 
