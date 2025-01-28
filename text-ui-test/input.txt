@@ -1,24 +1,26 @@
+list
+arrange
 unmark 1
 todo borrow book
 deadline
 deadline return book
 list
 deadline return book /by Sunday
-event project meeting /from Mon 2pm /to 4pm
-event meeting /from Mon 2pm /to 4pm
+event project meeting /from 21/10/2021 1400 /to 21/10/2021 1600
+event meeting /from 31/10/2022 1600 /to 21/10/2022 1700
 mark 2
 mark 5
 list
 event
 event read books /from
-event read books /from 4pm
-deadline return /by Sunday
+event read books /from 31/10/2021 1500
+deadline return /by 12/06/2024 1700
 deadline c          /by friday 4pm
 todo f
 mark 3
 list
 unmark 2
-event t       /from 1 /to 9
+event t       /from 01/01/2023 1300 /to 01/01/2023 0900
 list
 mark 5
 list
@@ -31,4 +33,5 @@ delete 3
 delete
 delete 900
 delete a
+arrange
 bye

@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class Storage {
+    private static final String USER_DIR = System.getProperty("user.dir");
     private static final String DIRECTORY_PATH = "./data";
     private static final String FILE_NAME = "tasks.json";
 
@@ -18,7 +19,7 @@ public class Storage {
     }
 
     public ArrayList<Task> loadTasks() throws FileNotFoundException {
-        Path pathToFile = Paths.get(DIRECTORY_PATH, FILE_NAME);
+        Path pathToFile = Paths.get(USER_DIR, DIRECTORY_PATH, FILE_NAME);
         if (!Files.exists(pathToFile)) {
             throw new FileNotFoundException("Uhh the data file does not exist");
         }
@@ -76,21 +77,22 @@ public class Storage {
 
 
 
-    public void updateTasks(ArrayList<Task> tasks) throws IOException {
+    public void updateTasks(TaskList tasks) throws IOException {
         // Create data directory if it doesn't exist
-        Path pathToDirectory = Paths.get(DIRECTORY_PATH);
+        Path pathToDirectory = Paths.get(USER_DIR, DIRECTORY_PATH);
         if (!Files.exists(pathToDirectory)) {
             Files.createDirectory(pathToDirectory);
         }
         // Create a JSON file if it doesn't exist
-        Path pathToFile = Paths.get(DIRECTORY_PATH, FILE_NAME);
+        Path pathToFile = Paths.get(USER_DIR, DIRECTORY_PATH, FILE_NAME);
 
         if (!Files.exists(pathToFile)) {
             Files.createFile(pathToFile);
         }
 
+        ArrayList<Task> tasksArray = tasks.getAllTasks();
         JsonArray taskArray = new JsonArray();
-        for (Task task : tasks) {
+        for (Task task : tasksArray) {
             taskArray.add(taskToJson(task));
         }
 
