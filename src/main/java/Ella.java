@@ -9,40 +9,25 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Ella {
-
-    public static void printLines() {
-        int CONSOLE_WIDTH = 80;
-        String line = "-".repeat(CONSOLE_WIDTH);
-        System.out.println(line);
+    private static Ui ui = new Ui();
+    
+    public Ella () {
     }
-
-    public static void greet() {
-        printLines();
-        System.out.println("Hi! This is Ella\nWhat do you need? I've got this.");
-        printLines();
-    }
-
-    public static void exit() {
-        printLines();
-        System.out.println("Bye... I know you will come back soon!");
-        printLines();
-    }
-
     public static void process(Task task, ArrayList<Task> tasks) {
         tasks.add(task);
-        printLines();
+        ui.printLines();
         System.out.println("Ok, I will add this in...");
         System.out.printf("%s%nYou have %d tasks in the list%n", task.toString(), tasks.size());
-        printLines();
+        ui.printLines();
     }
 
     public static void printTasks(ArrayList<Task> tasks) {
-        printLines();
+        ui.printLines();
         System.out.println("This is what you got:");
         for (int i = 0; i < tasks.size(); i++) {
             System.out.printf("%d.%s%n", i + 1, tasks.get(i));
         }
-        printLines();
+        ui.printLines();
 
     }
 
@@ -126,23 +111,12 @@ public class Ella {
         return new String[]{splitOne[0], splitTwo[0], splitTwo[1]};
     }
 
-    public static void printErrors(Exception e) {
-        printLines();
-        System.out.println(e.getMessage());
-        printLines();
-    }
-
-    public static void printErrors(String message) {
-        printLines();
-        System.out.println(message);
-        printLines();
-    }
 
     public static void deleteTask(Task task, ArrayList<Task> tasks) {
-        printLines();
+        ui.printLines();
         tasks.remove(task);
         System.out.printf("Ok got ya...I will remove this from the list...%n%s%nYou have %d tasks left%n", task.toString(), tasks.size());
-        printLines();
+        ui.printLines();
     }
 
     public static void arrangeTasks(ArrayList<Task> tasks) {
@@ -150,17 +124,17 @@ public class Ella {
                 .filter(task -> !task.isDone)
                 .sorted(new TaskComparator())
                 .collect(Collectors.toList());
-        printLines();
+        ui.printLines();
         System.out.println("Ok here are your tasks arranged by deadline");
         for (Task task : sortedTasks) {
             System.out.println(task);
         }
-        printLines();
+        ui.printLines();
 
     }
 
     public static void main(String[] args) {
-        greet();
+        ui.greet();
 
         // Initialize array to store tasks
         Storage storage = new Storage();
@@ -168,11 +142,11 @@ public class Ella {
         try {
             tasks = storage.loadTasks();
         } catch (FileNotFoundException e) {
-            printErrors(e);
+            ui.printErrors(e);
         } catch (IndexOutOfBoundsException e) {
-            printErrors("Erm there has been issues with the loading the tasks...Did you do something..");
+            ui.printErrors("Erm there has been issues with the loading the tasks...Did you do something..");
         } catch (DateTimeParseException e) {
-            printErrors("So the dates were not stored correctly in your file..We have to start over.....");
+            ui.printErrors("So the dates were not stored correctly in your file..We have to start over.....");
         }
         Scanner in = new Scanner(System.in);
 
@@ -204,15 +178,15 @@ public class Ella {
                         break;
                     case "mark":
                         Task taskDone = getTask(split, tasks);
-                        printLines();
+                        ui.printLines();
                         taskDone.markAsDone();
-                        printLines();
+                        ui.printLines();
                         break;
                     case "unmark":
                         Task taskUndone = getTask(split, tasks);
-                        printLines();
+                        ui.printLines();
                         taskUndone.markAsUndone();
-                        printLines();
+                        ui.printLines();
                         break;
                     case "delete":
                         Task taskDeleted = getTask(split, tasks);
@@ -228,21 +202,21 @@ public class Ella {
                         throw new InvalidCommand("So that does not exist...You need to check what you are saying...");
                 }
             } catch (InvalidCommand e) {
-                printErrors(e);
+                ui.printErrors(e);
             } catch (NumberFormatException e) {
-                printErrors("You need to give me a valid task number...");
+                ui.printErrors("You need to give me a valid task number...");
             } catch (DateTimeParseException e) {
-                printErrors("You got to follow the foramt to enter dates it is like dd/mm/yyyy Hhmm");
+                ui.printErrors("You got to follow the format to enter dates it is like dd/mm/yyyy Hhmm");
             } catch (DateTimeException e) {
-                printErrors(e);
+                ui.printErrors(e);
             }
         }
 
         try {
             storage.updateTasks(tasks);
         } catch (IOException e) {
-            printErrors("There has been some error saving your file :( Your tasks are not saved..");
+            ui.printErrors("There has been some error saving your file :( Your tasks are not saved..");
         }
-        exit();
+        ui.exit();
     }
 }
