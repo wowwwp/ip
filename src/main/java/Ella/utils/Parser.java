@@ -8,16 +8,7 @@ import Ella.command.*;
 
 public class Parser {
 
-    public static void checkValidity(String[] split, String message) throws InvalidCommand {
-        if (split.length < 2) {
-            throw new InvalidCommand(message);
-        }
-    }
-
-    public static void checkInputFormat(String[] split, int expectedArguments,String message) throws InvalidCommand {
-        if (split.length != expectedArguments) {
-            throw new InvalidCommand(message);
-        }
+    public static void checkBlank(String[] split, String message) throws InvalidCommand {
         for (String arg: split) {
             if (arg.isBlank()) {
                 throw new InvalidCommand(message);
@@ -25,24 +16,22 @@ public class Parser {
         }
     }
 
+    public static void checkInputFormat(String[] split, int expectedArguments,String message) throws InvalidCommand {
+        if (split.length != expectedArguments) {
+            throw new InvalidCommand(message);
+        }
+        checkBlank(split, message);
+    }
+
     public static String parseToDo(String[] splits) throws IndexOutOfBoundsException{
-        checkValidity(splits, "You need to have a task for todo!!");
+        checkInputFormat(splits, 2, "You need to have a task for todo!!");
         return splits[1];
     }
 
-    public static LocalDateTime parseTime(String time) {
-        time = time.trim();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
-        LocalDateTime date = LocalDateTime.parse(time, formatter);
-        LocalDateTime MAX_DATE = LocalDateTime.of(3035, 12, 31, 23, 59);
-        if (date.isAfter(MAX_DATE)) {
-            throw new DateTimeException("That is way too far ahead come on....");
-        }
-        return date;
-    }
+
     public static String[] parseDeadline(String[] splits) throws IndexOutOfBoundsException{
         // Check if its empty after deadline
-        checkValidity(splits, "Uhh you need to have a task and a date after the /by field...");
+        checkInputFormat(splits, 2, "Uhh you need to have a task and a date after the /by field...");
         // Check if input format for deadline is correct
         String[] splitsDeadline = splits[1].split("/by");
         checkInputFormat(splitsDeadline, 2, "Uhh you don't have a task or a date after the /by field...");
@@ -51,7 +40,7 @@ public class Parser {
 
     public static Integer getTaskId(String[] splits) throws InvalidCommand{
         // Check if task number is present
-        checkValidity(splits, "You need to give me a valid task number...");
+        checkInputFormat(splits, 2, "You need to give me a valid task number...");
         // Check if task number is empty
         checkInputFormat(splits, 2, "You need to give me a valid task number...");
         // Parse integer
@@ -63,7 +52,7 @@ public class Parser {
 
     public static String[] parseEvent(String[] splits) {
         // Check if its empty after event
-        checkValidity(splits, "Uhh you need to have a task, a date after the /from field and a date after the /to field...");
+        checkInputFormat(splits, 2, "Uhh you need to have a task, a date after the /from field and a date after the /to field...");
         // Check if there is task and a date after /from
         String[] splitOne = splits[1].split("/from");
         checkInputFormat(splitOne, 2,"Uhh you don't have a task or a date after the /from field...");
