@@ -77,7 +77,7 @@ public class Storage {
 
 
 
-    public void updateTasks(ArrayList<Task> tasks) throws IOException {
+    public void updateTasks(TaskList tasks) throws IOException {
         // Create data directory if it doesn't exist
         Path pathToDirectory = Paths.get(USER_DIR, DIRECTORY_PATH);
         if (!Files.exists(pathToDirectory)) {
@@ -90,8 +90,9 @@ public class Storage {
             Files.createFile(pathToFile);
         }
 
+        ArrayList<Task> tasksArray = tasks.getAllTasks();
         JsonArray taskArray = new JsonArray();
-        for (Task task : tasks) {
+        for (Task task : tasksArray) {
             taskArray.add(taskToJson(task));
         }
 
