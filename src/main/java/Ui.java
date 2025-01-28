@@ -1,4 +1,11 @@
+import java.util.Scanner;
+
 public class Ui {
+    private Scanner scan;
+
+    public Ui() {
+        this.scan = new Scanner(System.in);
+    }
 
     public void printLines() {
         int CONSOLE_WIDTH = 80;
@@ -12,23 +19,19 @@ public class Ui {
         printLines();
     }
 
-    public void exit() {
-        printLines();
-        System.out.println("Bye... I know you will come back soon!");
-        printLines();
-    }
-
     public void printErrors(Exception e) {
-        printLines();
         System.out.println(e.getMessage());
         printLines();
     }
 
 
     public void printErrors(String message) {
-        printLines();
         System.out.println(message);
         printLines();
+    }
+
+    public String readCommand() {
+        return scan.nextLine();
     }
 
 
