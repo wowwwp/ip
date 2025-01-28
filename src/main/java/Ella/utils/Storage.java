@@ -1,10 +1,5 @@
 package Ella.utils;
 
-import Ella.task.Task;
-import com.google.gson.*;
-import Ella.task.ToDo;
-import Ella.task.Deadline;
-import Ella.task.Event;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -14,6 +9,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
+import com.google.gson.*;
+
+import Ella.task.Task;
+import Ella.task.ToDo;
+import Ella.task.Deadline;
+import Ella.task.Event;
 
 public class Storage {
     private static final String USER_DIR = System.getProperty("user.dir");
