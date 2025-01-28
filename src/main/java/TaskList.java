@@ -35,29 +35,10 @@ public class TaskList {
         System.out.printf("%s%nYou have %d tasks in the list%n", task.toString(), tasks.size());
     }
 
-    public void printTasks() {
-        System.out.println("This is what you got:");
-        for (int i = 0; i < tasks.size(); i++) {
-            System.out.printf("%d.%s%n", i + 1, tasks.get(i));
-        }
-
-    }
 
     public ArrayList<Task> getAllTasks() {
         return tasks;
     }
 
-    public void arrangeTasks() {
-        List<Task> sortedTasks = tasks.stream()
-                .filter(task -> !task.isDone)
-                .sorted(new TaskComparator())
-                .toList();
 
-        System.out.println("Ok here are your tasks arranged by deadline");
-        for (Task task : sortedTasks) {
-            System.out.println(task);
-        }
-
-
-    }
 }
