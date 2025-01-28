@@ -8,7 +8,7 @@ if exist ACTUAL.TXT del ACTUAL.TXT
 REM Add path to GSON
 SET GSON_JAR=C:\Users\spooj\.m2\repository\com\google\code\gson\gson\2.8.9\gson-2.8.9.jar
 REM compile the code into the bin folder
-javac  -cp ..\src\main\java;%GSON_JAR% -Xlint:none -d ..\bin ..\src\main\java\*.java
+javac  -cp ..\src\main\java;%GSON_JAR% -Xlint:none -d ..\bin ..\src\main\java\Ella\*.java
 IF ERRORLEVEL 1 (
     echo ********** BUILD FAILURE **********
     exit /b 1
