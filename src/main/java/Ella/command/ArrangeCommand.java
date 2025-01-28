@@ -1,5 +1,12 @@
+package Ella.command;
+
 import java.util.ArrayList;
 import java.util.List;
+import Ella.task.Task;
+import Ella.task.TaskComparator;
+import Ella.utils.Storage;
+import Ella.utils.TaskList;
+
 
 public class ArrangeCommand extends Command {
 
@@ -19,14 +26,15 @@ public class ArrangeCommand extends Command {
 
 
     }
+
     @Override
-    void execute(Storage storage, TaskList taskList) {
+    public void execute(Storage storage, TaskList taskList) {
         ArrayList<Task> tasks = taskList.getAllTasks();
         arrangeTasks(tasks);
     }
 
     @Override
-    boolean isExit() {
+    public boolean isExit() {
         return false;
     }
 }

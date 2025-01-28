@@ -1,4 +1,9 @@
+package Ella.command;
+
 import java.util.ArrayList;
+import Ella.utils.Storage;
+import Ella.utils.TaskList;
+import Ella.task.Task;
 
 public class ListCommand extends Command {
 
@@ -11,13 +16,13 @@ public class ListCommand extends Command {
     }
 
     @Override
-    void execute(Storage storage, TaskList taskList) {
+    public void execute(Storage storage, TaskList taskList) {
         ArrayList<Task> tasks = taskList.getAllTasks();
         printTasks(tasks);
     }
 
     @Override
-    boolean isExit() {
+    public boolean isExit() {
         return false;
     }
 }

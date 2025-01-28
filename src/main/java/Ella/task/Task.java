@@ -1,9 +1,11 @@
+package Ella.task;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public abstract class Task {
-    protected String description;
-    protected boolean isDone;
+    public String description;
+    public boolean isDone;
     protected DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy h:mma");
 
     public Task(String description) {

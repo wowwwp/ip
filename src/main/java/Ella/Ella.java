@@ -1,3 +1,5 @@
+package Ella;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.DateTimeException;
@@ -8,9 +10,13 @@ import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import Ella.command.Command;
+import Ella.errors.InvalidCommand;
+import Ella.utils.*;
+
 public class Ella {
-    private Ui ui;
-    private Storage storage;
+    private final Ui ui;
+    private final Storage storage;
     private TaskList tasks;
 
     public Ella() {
@@ -44,23 +50,19 @@ public class Ella {
                 isExit = c.isExit();
                 c.execute(storage, tasks);
                 ui.printLines();
-            } catch (InvalidCommand e) {
-                ui.printErrors(e);
             } catch (NumberFormatException e) {
                 ui.printErrors("You need to give me a valid task number...");
             } catch (DateTimeParseException e) {
                 ui.printErrors("You got to follow the format to enter dates it is like dd/mm/yyyy Hhmm");
-            } catch (DateTimeException e) {
+            } catch (InvalidCommand | DateTimeException e) {
                 ui.printErrors(e);
+            } catch (IOException e) {
+                ui.printErrors("There has been some error saving your file :( Your tasks are not saved..");
+                ui.printLines();
             }
         }
 
-        try {
-            storage.updateTasks(tasks);
-        } catch (IOException e) {
-            ui.printErrors("There has been some error saving your file :( Your tasks are not saved..");
-            ui.printLines();
-        }
+
     }
 
     public static void main(String[] args) {

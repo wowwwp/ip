@@ -1,10 +1,15 @@
+package Ella.command;
+
+import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import Ella.utils.Storage;
+import Ella.utils.TaskList;
 
 public abstract class Command {
-    abstract void execute(Storage storage, TaskList taskList);
-    abstract boolean isExit();
+    public abstract void execute(Storage storage, TaskList taskList) throws IOException;
+    public abstract boolean isExit();
 
     public static LocalDateTime parseTime(String time) {
         time = time.trim();
