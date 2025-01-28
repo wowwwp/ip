@@ -1,3 +1,5 @@
+package Ella.utils;
+
 import java.util.Scanner;
 
 public class Ui {

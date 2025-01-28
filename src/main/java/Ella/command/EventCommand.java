@@ -1,4 +1,10 @@
+package Ella.command;
+
+import java.io.IOException;
 import java.time.LocalDateTime;
+import Ella.utils.Storage;
+import Ella.utils.TaskList;
+import Ella.task.Event;
 
 public class EventCommand extends Command {
     private final String[] args;
@@ -13,13 +19,14 @@ public class EventCommand extends Command {
     }
 
     @Override
-    void execute(Storage storage, TaskList taskList) {
+    public void execute(Storage storage, TaskList taskList) throws IOException {
         Event event = createEvent();
         taskList.process(event);
+        storage.updateTasks(taskList);
     }
 
     @Override
-    boolean isExit() {
+    public boolean isExit() {
         return false;
     }
 }

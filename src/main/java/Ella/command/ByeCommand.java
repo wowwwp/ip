@@ -1,12 +1,17 @@
+package Ella.command;
+
+import Ella.utils.Storage;
+import Ella.utils.TaskList;
+
 public class ByeCommand extends Command {
 
     @Override
-    void execute(Storage s, TaskList taskList) {
+    public void execute(Storage s, TaskList taskList) {
         System.out.println("Bye... I know you will come back soon!");
     }
 
     @Override
-    boolean isExit() {
+    public boolean isExit() {
         return true;
     }
 }

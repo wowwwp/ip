@@ -1,3 +1,11 @@
+package Ella.command;
+
+import Ella.utils.Storage;
+import Ella.utils.TaskList;
+import Ella.task.Task;
+
+import java.io.IOException;
+
 public class MarkCommand extends Command{
     private final int id;
 
@@ -5,15 +13,16 @@ public class MarkCommand extends Command{
         this.id = id;
     }
     @Override
-    void execute(Storage storage, TaskList taskList) {
+    public void execute(Storage storage, TaskList taskList) throws IOException {
         if (taskList.checkTask(id)) {
             Task task = taskList.getTask(id);
             task.markAsDone();
+            storage.updateTasks(taskList);
         }
     }
 
     @Override
-    boolean isExit() {
+    public boolean isExit() {
         return false;
     }
 }

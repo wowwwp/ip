@@ -1,4 +1,10 @@
+package Ella.command;
+
+import java.io.IOException;
 import java.time.LocalDateTime;
+import Ella.utils.Storage;
+import Ella.utils.TaskList;
+import Ella.task.Deadline;
 
 public class DeadlineCommand extends Command {
     private final String[] splits;
@@ -11,13 +17,14 @@ public class DeadlineCommand extends Command {
         return new Deadline(splits[0], by);
     }
     @Override
-    void execute(Storage storage, TaskList taskList) {
+    public void execute(Storage storage, TaskList taskList) throws IOException {
         Deadline deadline = createDeadline();
         taskList.process(deadline);
+        storage.updateTasks(taskList);
     }
 
     @Override
-    boolean isExit() {
+    public boolean isExit() {
         return false;
     }
 }

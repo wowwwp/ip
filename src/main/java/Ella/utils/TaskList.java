@@ -1,6 +1,10 @@
+package Ella.utils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import Ella.task.Task;
+import Ella.errors.InvalidCommand;
 
 public class TaskList {
     protected ArrayList<Task> tasks;
