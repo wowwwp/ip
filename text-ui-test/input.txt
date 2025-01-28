@@ -1,4 +1,5 @@
 list
+arrange
 unmark 1
 todo borrow book
 deadline
@@ -32,4 +33,5 @@ delete 3
 delete
 delete 900
 delete a
+arrange
 bye
