@@ -9,19 +9,15 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Ella {
-    private static Ui ui = new Ui();
-    
-    public Ella () {
-    }
+    private Ui ui;
+    private Storage storage;
+    private TaskList tasks;
 
+    public Ella() {
+        this.ui = new Ui();
+        this.storage = new Storage();
+        this.tasks = new TaskList();
 
-
-    public static void main(String[] args) {
-        ui.greet();
-
-        // Initialize array to store tasks
-        Storage storage = new Storage();
-        TaskList tasks = new TaskList();
         try {
             tasks = new TaskList(storage.loadTasks());
         } catch (FileNotFoundException e) {
@@ -34,6 +30,11 @@ public class Ella {
             ui.printLines();
             ui.printErrors("So the dates were not stored correctly in your file..We have to start over.....");
         }
+    }
+
+    public void run() {
+        ui.greet();
+
         boolean isExit = false;
         while(!isExit) {
             try {
@@ -60,5 +61,9 @@ public class Ella {
             ui.printErrors("There has been some error saving your file :( Your tasks are not saved..");
             ui.printLines();
         }
+    }
+
+    public static void main(String[] args) {
+        new Ella().run();
     }
 }
