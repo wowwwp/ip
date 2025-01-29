@@ -102,6 +102,7 @@ public class Parser {
 
     /**
      * Checks if there is a keyword for find
+     *
      * @param splits An array containing user input which is split
      * @return keyword to find in tasks
      */

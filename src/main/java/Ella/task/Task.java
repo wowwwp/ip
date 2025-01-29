@@ -21,7 +21,20 @@ public abstract class Task {
     protected final String description;
     private boolean isDone;
     protected DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy h:mma");
+    // abstract methods
+    /**
+     * Returns all dates associated with the given task
+     * @return An array containing dates
+     */
+    public abstract LocalDateTime[] getDates();
 
+    /**
+     * Returns a date that can be used to compare tasks. This date is typically used to determine
+     * the order or priority of tasks based on their deadlines.
+     *
+     * @return A date used for comparison
+     */
+    public abstract LocalDateTime compareDate();
 
     public Task(String description) {
         this.description = description;
@@ -51,20 +64,6 @@ public abstract class Task {
         System.out.println("Well i guess this is a future you problem");
         System.out.println(this);
     }
-
-    /**
-     * Returns all dates associated with the given task
-     * @return An array containing dates
-     */
-    public abstract LocalDateTime[] getDates();
-
-    /**
-     * Returns a date that can be used to compare tasks. This date is typically used to determine
-     * the order or priority of tasks based on their deadlines.
-     *
-     * @return A date used for comparison
-     */
-    public abstract LocalDateTime compareDate();
 
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
