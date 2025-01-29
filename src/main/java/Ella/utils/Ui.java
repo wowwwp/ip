@@ -2,6 +2,9 @@ package Ella.utils;
 
 import java.util.Scanner;
 
+/**
+ * Encapsulates all functionalities needed for user interaction
+ */
 public class Ui {
     private Scanner scan;
 
