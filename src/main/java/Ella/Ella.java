@@ -47,7 +47,7 @@ public class Ella {
         ui.greet();
 
         boolean isExit = false;
-        while(!isExit) {
+        while (!isExit) {
             try {
                 String line = ui.readCommand();
                 ui.printLines();

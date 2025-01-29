@@ -1,12 +1,11 @@
 package Ella.command;
 
-import Ella.task.Event;
+import java.io.IOException;
+
 import Ella.utils.Storage;
 import Ella.utils.TaskList;
 import Ella.task.ToDo;
 
-import java.io.IOException;
-import java.time.LocalDateTime;
 
 /**
  * Represents todo command which creates a new {@link ToDo}

@@ -2,13 +2,14 @@ package Ella.task;
 
 import java.time.LocalDateTime;
 
+
 /**
  * Represents an event task. It contains the description of
  * the task, when the event starts as well as when the event ends.
  */
-public class Event extends Task{
-    protected LocalDateTime from;
-    protected LocalDateTime to;
+public class Event extends Task {
+    private final LocalDateTime from;
+    private final LocalDateTime to;
 
     public Event(String description, LocalDateTime from, LocalDateTime to) {
         super(description);
@@ -31,7 +32,7 @@ public class Event extends Task{
      */
     @Override
     public LocalDateTime[] getDates() {
-        return new LocalDateTime[]{from,to};
+        return new LocalDateTime[]{from, to};
     }
     /**
      * {@inheritDoc}
@@ -47,6 +48,7 @@ public class Event extends Task{
 
     @Override
     public String toString() {
-        return String.format("[E]%s (from: %s to: %s)", super.toString(), from.format(super.formatter), to.format(super.formatter));
+        return String.format("[E]%s (from: %s to: %s)", super.toString(), from.format(super.formatter),
+                to.format(super.formatter));
     }
 }

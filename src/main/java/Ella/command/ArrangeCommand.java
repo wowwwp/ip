@@ -2,6 +2,7 @@ package Ella.command;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import Ella.task.Task;
 import Ella.task.TaskComparator;
 import Ella.utils.Storage;
@@ -21,9 +22,10 @@ public class ArrangeCommand extends Command {
      */
     public void arrangeTasks(ArrayList<Task> tasks) {
         List<Task> sortedTasks = tasks.stream()
-                .filter(task -> !task.isDone)
+                .filter(task -> !task.isDone())
                 .sorted(new TaskComparator())
                 .toList();
+
         if (!sortedTasks.isEmpty()) {
             System.out.println("Ok here are your tasks arranged by deadline");
             for (Task task : sortedTasks) {

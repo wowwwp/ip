@@ -18,16 +18,11 @@ import java.time.format.DateTimeFormatter;
  * ensuring a consistent structure and behavior across different command types.</p>
  */
 public abstract class Task {
-    public String description;
-    public boolean isDone;
+    protected final String description;
+    private boolean isDone;
     protected DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy h:mma");
 
-    /**
-     * Initializes a new {@link Task}. Used when creating new tasks which the
-     * user input.
-     *
-     * @param description Description of the task.
-     */
+
     public Task(String description) {
         this.description = description;
         this.isDone = false;
@@ -37,21 +32,21 @@ public abstract class Task {
      * Initializes a new {@link Task}. Used when loading in tasks
      * from the JSON file.
      *
-     * @param description
-     * @param isDone
+     * @param description Description of the task
+     * @param isDone boolean to signify if it is done
      */
     public Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
     }
 
-    public void markAsDone() {
+    public void setAsDone() {
         this.isDone = true;
         System.out.println("Wow someone was productive");
         System.out.println(this);
     }
 
-    public void markAsUndone() {
+    public void setAsUndone() {
         this.isDone = false;
         System.out.println("Well i guess this is a future you problem");
         System.out.println(this);
@@ -75,6 +70,13 @@ public abstract class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public String getDescription() {
+        return description;
+    }
     @Override
     public String toString() {
         return String.format("[%s] %s", this.getStatusIcon(), description);

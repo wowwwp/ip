@@ -1,17 +1,18 @@
 package Ella.command;
 
+import java.io.IOException;
+
 import Ella.utils.Storage;
 import Ella.utils.TaskList;
 import Ella.task.Task;
 
-import java.io.IOException;
 
 /**
  * Represents the delete command. It deletes a certain
  * task from the {@code taskList}
  */
 public class DeleteCommand extends Command {
-    private int id;
+    private final int id;
 
     /**
      * Initializes a {@link DeadlineCommand} with the id

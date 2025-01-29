@@ -3,7 +3,6 @@ package Ella.command;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
-import Ella.task.Deadline;
 import Ella.utils.Storage;
 import Ella.utils.TaskList;
 import Ella.task.Event;
@@ -24,6 +23,7 @@ public class EventCommand extends Command {
     public EventCommand(String[] args) {
         this.args = args;
     }
+
     /**
      * Initializes new {@link Event} object. It extracts the task description
      * and converts the time string into a {@link LocalDateTime} object,

@@ -2,12 +2,14 @@ package Ella.task;
 
 import java.time.LocalDateTime;
 
+
 /**
  * Represents a deadline task. It contains the description of
  * the task as well as a due date.
  */
-public class Deadline extends Task{
-    protected LocalDateTime by;
+
+public class Deadline extends Task {
+    private final LocalDateTime by;
 
     public Deadline(String description, LocalDateTime by) {
         super(description);

@@ -1,10 +1,11 @@
 package Ella.command;
 
+import java.io.IOException;
+
 import Ella.utils.Storage;
 import Ella.utils.TaskList;
 import Ella.task.Task;
 
-import java.io.IOException;
 
 /**
  * Represents mark command which marks a given
@@ -38,7 +39,7 @@ public class MarkCommand extends Command{
     public void execute(Storage storage, TaskList taskList) throws IOException {
         if (taskList.checkTask(id)) {
             Task task = taskList.getTask(id);
-            task.markAsDone();
+            task.setAsDone();
             storage.updateTasks(taskList);
         }
     }

@@ -10,6 +10,7 @@ import Ella.command.*;
  * not match any of the relevant commands an {@link InvalidCommand} is thrown.</p>
  */
 public class Parser {
+
     /**
      * Checks if any of the elements in the array is blank.
      *
@@ -17,8 +18,8 @@ public class Parser {
      * @param message Error message if there is failure
      * @throws InvalidCommand If the split contains whitespace
      */
-    private static void checkBlank(String[] split, String message) throws InvalidCommand {
-        for (String arg: split) {
+    public static void checkBlank(String[] split, String message) throws InvalidCommand {
+        for (String arg : split) {
             if (arg.isBlank()) {
                 throw new InvalidCommand(message);
             }
@@ -34,12 +35,13 @@ public class Parser {
      * @param message Error message
      * @throws InvalidCommand If the {@code split} does not contain the expected number of elements
      */
-    public static void checkInputFormat(String[] split, int expectedArguments,String message) throws InvalidCommand {
+    public static void checkInputFormat(String[] split, int expectedArguments, String message) throws InvalidCommand {
         if (split.length != expectedArguments) {
             throw new InvalidCommand(message);
         }
         checkBlank(split, message);
     }
+
 
     /**
      * Checks if the user input has the description of the task
@@ -48,10 +50,11 @@ public class Parser {
      * @return Description of the task.
      * @throws IndexOutOfBoundsException If the user did not provide a task description.
      */
-    public static String parseToDo(String[] splits) throws IndexOutOfBoundsException{
+    public static String parseToDo(String[] splits) throws IndexOutOfBoundsException {
         checkInputFormat(splits, 2, "You need to have a task for todo!!");
         return splits[1];
     }
+
 
     /**
      * Checks if the user input has the task description and a date after the /by field.
@@ -60,12 +63,14 @@ public class Parser {
      * @return An array containing the task description and a date.
      * @throws IndexOutOfBoundsException If the user did not provide a task and a date.
      */
-    public static String[] parseDeadline(String[] splits) throws IndexOutOfBoundsException{
+    public static String[] parseDeadline(String[] splits) throws IndexOutOfBoundsException {
         // Check if its empty after deadline
-        checkInputFormat(splits, 2, "Uhh you need to have a task and a date after the /by field...");
+        checkInputFormat(splits, 2,
+                "Uhh you need to have a task and a date after the /by field...");
         // Check if input format for deadline is correct
         String[] splitsDeadline = splits[1].split("/by");
-        checkInputFormat(splitsDeadline, 2, "Uhh you don't have a task or a date after the /by field...");
+        checkInputFormat(splitsDeadline, 2,
+                "Uhh you don't have a task or a date after the /by field...");
         return splitsDeadline;
     }
 
@@ -79,15 +84,18 @@ public class Parser {
      * @throws IndexOutOfBoundsException If the user input does not have a task, date after the from /field or
      * a date after the /to field.
      */
-    public static String[] parseEvent(String[] splits) throws IndexOutOfBoundsException{
+    public static String[] parseEvent(String[] splits) {
         // Check if its empty after event
-        checkInputFormat(splits, 2, "Uhh you need to have a task, a date after the /from field and a date after the /to field...");
+        checkInputFormat(splits, 2,
+                "Uhh you need to have a task, a date after the /from field and a date after the /to field...");
         // Check if there is task and a date after /from
         String[] splitOne = splits[1].split("/from");
-        checkInputFormat(splitOne, 2,"Uhh you don't have a task or a date after the /from field...");
+        checkInputFormat(splitOne, 2,
+                "Uhh you don't have a task or a date after the /from field...");
         // Check if there is /from and /to
         String[] splitTwo = splitOne[1].split("/to");
-        checkInputFormat(splitTwo, 2, "Uhh you don't have a date after the /from field or the /to field...");
+        checkInputFormat(splitTwo, 2,
+                "Uhh you don't have a date after the /from field or the /to field...");
         return new String[]{splitOne[0], splitTwo[0], splitTwo[1]};
     }
 
@@ -125,27 +133,27 @@ public class Parser {
         }
 
         switch (command) {
-            case "todo":
-                String description = parseToDo(split);
-                return new ToDoCommand(description);
-            case "deadline":
-                String[] splitDeadline = parseDeadline(split);
-                return new DeadlineCommand(splitDeadline);
-            case "event":
-                String[] splitEvent = parseEvent(split);
-                return new EventCommand(splitEvent);
-            case "mark":
-                return new MarkCommand(getTaskId(split));
-            case "unmark":
-                return new UnMarkCommand(getTaskId(split));
-            case "delete":
-                return new DeleteCommand(getTaskId(split));
-            case "list":
-                return new ListCommand();
-            case "arrange":
-                return new ArrangeCommand();
-            default:
-                throw new InvalidCommand("So that does not exist...You need to check what you are saying...");
+        case "todo":
+            String description = parseToDo(split);
+            return new ToDoCommand(description);
+        case "deadline":
+            String[] splitDeadline = parseDeadline(split);
+            return new DeadlineCommand(splitDeadline);
+        case "event":
+            String[] splitEvent = parseEvent(split);
+            return new EventCommand(splitEvent);
+        case "mark":
+            return new MarkCommand(getTaskId(split));
+        case "unmark":
+            return new UnMarkCommand(getTaskId(split));
+        case "delete":
+            return new DeleteCommand(getTaskId(split));
+        case "list":
+            return new ListCommand();
+        case "arrange":
+            return new ArrangeCommand();
+        default:
+            throw new InvalidCommand("So that does not exist...You need to check what you are saying...");
         }
 
     }

@@ -2,11 +2,12 @@ package Ella.task;
 
 import java.time.LocalDateTime;
 
+
 /**
  * Represents a todo task. It contains the description of
  * the task.
  */
-public class ToDo extends Task{
+public class ToDo extends Task {
 
     public ToDo(String description) {
         super(description);

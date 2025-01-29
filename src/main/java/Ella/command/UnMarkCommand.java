@@ -1,10 +1,11 @@
 package Ella.command;
 
+import java.io.IOException;
+
 import Ella.utils.Storage;
 import Ella.utils.TaskList;
 import Ella.task.Task;
 
-import java.io.IOException;
 
 /**
  * Represents unmark command which unmarks a given
@@ -38,7 +39,7 @@ public class UnMarkCommand extends Command {
     public void execute(Storage storage, TaskList taskList) throws IOException {
         if (taskList.checkTask(id)) {
             Task task = taskList.getTask(id);
-            task.markAsUndone();
+            task.setAsUndone();
             storage.updateTasks(taskList);
         }
     }
