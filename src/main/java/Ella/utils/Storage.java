@@ -17,14 +17,21 @@ import Ella.task.ToDo;
 import Ella.task.Deadline;
 import Ella.task.Event;
 
+/**
+ * Encapsulates all functionalities needed for loading and saving tasks in a JSON file.
+ */
 public class Storage {
     private static final String USER_DIR = System.getProperty("user.dir");
     private static final String DIRECTORY_PATH = "./data";
     private static final String FILE_NAME = "tasks.json";
 
-    public Storage() {
-    }
-
+    /**
+     * Loads in the data present in the JSON file. Each task is represented as a JsonObject. Based on
+     * the task name, an appropriate task is created and added into an {@link ArrayList} of tasks.
+     *
+     * @return ArrayList containing all the tasks found in the JSON file
+     * @throws FileNotFoundException If the JSON file is not present in the initial directory
+     */
     public ArrayList<Task> loadTasks() throws FileNotFoundException {
         Path pathToFile = Paths.get(USER_DIR, DIRECTORY_PATH, FILE_NAME);
         if (!Files.exists(pathToFile)) {
@@ -67,6 +74,13 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Converts {@link Task} to a JsonObject. Each JsonObject has properties which
+     * can represent the various attributes of the {@link Task}.
+     *
+     * @param task Task which needs to be converted to a JsonObject
+     * @return A JsonObject which represents the {@link Task}
+     */
     public JsonObject taskToJson(Task task) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("type", task.getClass().getSimpleName());
@@ -83,7 +97,13 @@ public class Storage {
     }
 
 
-
+    /**
+     * Saves the {@link TaskList} into a JSON file. It creates a directory and a JSON file if not present and saves
+     * all the tasks in a JsonArray. Each {@link Task} is saved as a JsonObject before being added to the JsonArray.
+     *
+     * @param tasks {@link TaskList} containing the current tasks
+     * @throws IOException If there is issues saving the file
+     */
     public void updateTasks(TaskList tasks) throws IOException {
         // Create data directory if it doesn't exist
         Path pathToDirectory = Paths.get(USER_DIR, DIRECTORY_PATH);

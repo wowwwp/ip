@@ -17,6 +17,10 @@ public class Ella {
     private final Storage storage;
     private TaskList tasks;
 
+    /**
+     * Instantiates Ella. Instantiates a new {@link Ui}, {@link Storage} and {@link TaskList} for the session.
+     * If there is an existing JSON file, tasks are loaded and used to populate {@link TaskList}
+     */
     public Ella() {
         this.ui = new Ui();
         this.storage = new Storage();
@@ -36,6 +40,9 @@ public class Ella {
         }
     }
 
+    /**
+     * Main function for Ella which handles all user input and errors encountered.
+     */
     public void run() {
         ui.greet();
 

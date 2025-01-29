@@ -2,6 +2,10 @@ package Ella.task;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents a deadline task. It contains the description of
+ * the task as well as a due date.
+ */
 public class Deadline extends Task{
     protected LocalDateTime by;
 
@@ -15,11 +19,26 @@ public class Deadline extends Task{
         this.by = by;
     }
 
+    /**
+     *{@inheritDoc}
+     *
+     * <p> An array containing the due date of the {@link Deadline} is
+     * returned.</p>
+     *
+     * @return An array containing the due date
+     */
     @Override
     public LocalDateTime[] getDates() {
         return new LocalDateTime[]{by};
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * <p> Returns the due date associated with {@link Deadline}. </p>
+     *
+     * @return A date for comparison
+     */
     public LocalDateTime compareDate() {
         return by;
     }
