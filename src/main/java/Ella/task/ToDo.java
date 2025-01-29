@@ -2,7 +2,7 @@ package Ella.task;
 
 import java.time.LocalDateTime;
 
-public class ToDo extends Task{
+public class ToDo extends Task {
 
     public ToDo(String description) {
         super(description);

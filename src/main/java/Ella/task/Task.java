@@ -4,9 +4,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public abstract class Task {
-    public String description;
-    public boolean isDone;
+    protected final String description;
+    private boolean isDone;
     protected DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy h:mma");
+
+    public abstract LocalDateTime[] getDates();
+
+    public abstract LocalDateTime compareDate();
 
     public Task(String description) {
         this.description = description;
@@ -18,20 +22,21 @@ public abstract class Task {
         this.isDone = isDone;
     }
 
-    public void markAsDone() {
+    public void setAsDone() {
         this.isDone = true;
         System.out.println("Wow someone was productive");
         System.out.println(this);
     }
 
-    public void markAsUndone() {
+    public void setAsUndone() {
         this.isDone = false;
         System.out.println("Well i guess this is a future you problem");
         System.out.println(this);
     }
 
-    public abstract LocalDateTime[] getDates();
-    public abstract LocalDateTime compareDate();
+    public boolean isDone() {
+        return isDone;
+    }
 
     public String getDescription() {
         return description;
