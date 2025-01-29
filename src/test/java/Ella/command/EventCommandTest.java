@@ -1,12 +1,13 @@
 package Ella.command;
 
-import Ella.task.Event;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.time.format.DateTimeParseException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
+
+import Ella.task.Event;
 
 public class EventCommandTest {
     @Test
@@ -15,8 +16,9 @@ public class EventCommandTest {
         Event event = eventCommand.createEvent();
         assertEquals("[E][ ] test (from: 30-06-2002 4:00pm to: 21-07-2003 2:00pm)", event.toString());
     }
+
     @Test
-    public void createEventCommand_fail() {
+    public void createEventCommand_improperTime_fail() {
         EventCommand eventCommand = new EventCommand(new String[]{"test", "30/06/2002 1600", "21/07/2003"});
         try {
             eventCommand.createEvent();

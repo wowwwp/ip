@@ -1,11 +1,13 @@
 package Ella.command;
 
-import Ella.task.Deadline;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.format.DateTimeParseException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import Ella.task.Deadline;
+
 
 public class DeadlineCommandTest {
     @Test
@@ -15,8 +17,9 @@ public class DeadlineCommandTest {
         assertEquals("[D][ ] read books (by: 30-10-2002 2:00pm)", d.toString());
 
     }
+
     @Test
-    public void testDeadlineCommand_fail() {
+    public void testDeadlineCommand_improperTime_fail() {
         DeadlineCommand command = new DeadlineCommand(new String[]{"read books", " 30/10/2002"});
         DeadlineCommand commandOne = new DeadlineCommand(new String[]{"read books", "1400"});
         try {
