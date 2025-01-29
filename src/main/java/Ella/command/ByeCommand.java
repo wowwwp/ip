@@ -3,6 +3,11 @@ package Ella.command;
 import Ella.utils.Storage;
 import Ella.utils.TaskList;
 
+/**
+ * Represents the bye command, which prints a goodbye message
+ * to the user. After this command is used, the user will
+ * exit the chatbot.
+ */
 public class ByeCommand extends Command {
 
     @Override
