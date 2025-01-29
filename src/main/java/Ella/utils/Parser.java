@@ -14,7 +14,7 @@ public class Parser {
     /**
      * Checks if any of the elements in the array is blank.
      *
-     * @param split Array containing the user input which is split
+     * @param split   Array containing the user input which is split
      * @param message Error message if there is failure
      * @throws InvalidCommand If the split contains whitespace
      */
@@ -26,13 +26,14 @@ public class Parser {
         }
     }
 
+
     /**
      * Checks if the {@code split} array contains the expected number of arguments,
      * and verifies that none of the elements are blank.
      *
-     * @param split An array containing user input which is split
+     * @param split             An array containing user input which is split
      * @param expectedArguments Number of elements which should be present after split
-     * @param message Error message
+     * @param message           Error message
      * @throws InvalidCommand If the {@code split} does not contain the expected number of elements
      */
     public static void checkInputFormat(String[] split, int expectedArguments, String message) throws InvalidCommand {
@@ -82,7 +83,7 @@ public class Parser {
      * @return An array containing task description, a date representing when the event starts and
      * a date representing when the event ends.
      * @throws IndexOutOfBoundsException If the user input does not have a task, date after the from /field or
-     * a date after the /to field.
+     *                                   a date after the /to field.
      */
     public static String[] parseEvent(String[] splits) {
         // Check if its empty after event
@@ -100,19 +101,30 @@ public class Parser {
     }
 
     /**
+     * Checks if there is a keyword for find
+     * @param splits An array containing user input which is split
+     * @return keyword to find in tasks
+     */
+    public static String parseFind(String[] splits) {
+        checkInputFormat(splits, 2, "You need to give me something to find...");
+        return splits[1];
+    }
+
+    /**
      * Checks if there is an integer given as a task number.
      *
      * @param splits An array containing the user input which is split
      * @return Index of a task
      * @throws InvalidCommand If there is no integer present o
      */
-    public static Integer getTaskId(String[] splits) throws InvalidCommand{
+    public static Integer getTaskId(String[] splits) throws InvalidCommand {
         // Check if task number is present
         checkInputFormat(splits, 2, "You need to give me a valid task number...");
         // Parse integer
         int id = Integer.parseInt(splits[1]);
         return id - 1;
     }
+
 
     /**
      * Splits the user input and parses it based on the command. If the user input follows the input structure of a
@@ -121,7 +133,7 @@ public class Parser {
      * @param line Raw user input
      * @return Command based on the user input
      * @throws InvalidCommand If the user gives a command which does not exist or does not follow the input structure
-     * of the command.
+     *                        of the command.
      */
     public static Command parse(String line) throws InvalidCommand {
         line = line.trim();
@@ -152,6 +164,9 @@ public class Parser {
             return new ListCommand();
         case "arrange":
             return new ArrangeCommand();
+        case "find":
+            String keyword = parseFind(split);
+            return new FindCommand(keyword);
         default:
             throw new InvalidCommand("So that does not exist...You need to check what you are saying...");
         }
