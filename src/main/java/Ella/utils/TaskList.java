@@ -1,6 +1,7 @@
 package Ella.utils;
 
 import java.util.ArrayList;
+
 import Ella.task.Task;
 import Ella.errors.InvalidCommand;
 
@@ -17,7 +18,8 @@ public class TaskList {
 
     public void deleteTask(Task task) {
         tasks.remove(task);
-        System.out.printf("Ok got ya...I will remove this from the list...%n%s%nYou have %d tasks left%n", task.toString(), tasks.size());
+        System.out.printf("Ok got ya...I will remove this from the list...%n%s%nYou have %d tasks left%n",
+                          task.toString(), tasks.size());
     }
 
     public boolean checkTask(Integer id) {

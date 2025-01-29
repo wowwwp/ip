@@ -4,11 +4,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 import com.google.gson.*;
 
@@ -36,29 +36,31 @@ public class Storage {
         FileReader fileReader = new FileReader(pathToFile.toFile());
         JsonArray jsonArray = gson.fromJson(fileReader, JsonArray.class);
 
-        for (JsonElement jsonObject: jsonArray) {
+        for (JsonElement jsonObject : jsonArray) {
             JsonObject jsonTask = jsonObject.getAsJsonObject();
             String taskType = jsonTask.get("type").getAsString();
             switch (taskType) {
-                case "ToDo":
-                    ToDo toDo = new ToDo(jsonTask.get("name").getAsString(), jsonTask.get("completed").getAsBoolean());
-                    tasks.add(toDo);
-                    break;
-                case "Deadline":
-                    String deadlineString = jsonTask.get("dates").getAsJsonArray().get(0).getAsString();
-                    LocalDateTime date = LocalDateTime.parse(deadlineString);
-                    Deadline deadline = new Deadline(jsonTask.get("name").getAsString(), jsonTask.get("completed").getAsBoolean(), date);
-                    tasks.add(deadline);
-                    break;
-                case "Event":
-                    JsonArray dates = jsonTask.get("dates").getAsJsonArray();
-                    String fromString = dates.get(0).getAsString();
-                    LocalDateTime from = LocalDateTime.parse(fromString);
-                    String toString = dates.get(1).getAsString();
-                    LocalDateTime to = LocalDateTime.parse(toString);
-                    Event event = new Event(jsonTask.get("name").getAsString(), jsonTask.get("completed").getAsBoolean(), from, to);
-                    tasks.add(event);
-                    break;
+            case "ToDo":
+                ToDo toDo = new ToDo(jsonTask.get("name").getAsString(), jsonTask.get("completed").getAsBoolean());
+                tasks.add(toDo);
+                break;
+            case "Deadline":
+                String deadlineString = jsonTask.get("dates").getAsJsonArray().get(0).getAsString();
+                LocalDateTime date = LocalDateTime.parse(deadlineString);
+                Deadline deadline = new Deadline(jsonTask.get("name").getAsString(),
+                        jsonTask.get("completed").getAsBoolean(), date);
+                tasks.add(deadline);
+                break;
+            case "Event":
+                JsonArray dates = jsonTask.get("dates").getAsJsonArray();
+                String fromString = dates.get(0).getAsString();
+                LocalDateTime from = LocalDateTime.parse(fromString);
+                String toString = dates.get(1).getAsString();
+                LocalDateTime to = LocalDateTime.parse(toString);
+                Event event = new Event(jsonTask.get("name").getAsString(),
+                        jsonTask.get("completed").getAsBoolean(), from, to);
+                tasks.add(event);
+                break;
             }
 
 
@@ -70,8 +72,8 @@ public class Storage {
     public JsonObject taskToJson(Task task) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("type", task.getClass().getSimpleName());
-        jsonObject.addProperty("completed", task.isDone);
-        jsonObject.addProperty("name", task.description);
+        jsonObject.addProperty("completed", task.isDone());
+        jsonObject.addProperty("name", task.getDescription());
         LocalDateTime[] dates = task.getDates();
         JsonArray jsonArray = new JsonArray();
         for (LocalDateTime date : dates) {
@@ -81,7 +83,6 @@ public class Storage {
         jsonObject.add("dates", jsonArray);
         return jsonObject;
     }
-
 
 
     public void updateTasks(TaskList tasks) throws IOException {
