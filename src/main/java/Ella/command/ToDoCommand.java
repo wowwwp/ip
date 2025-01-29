@@ -1,12 +1,12 @@
 package Ella.command;
 
+import java.io.IOException;
+
 import Ella.utils.Storage;
 import Ella.utils.TaskList;
 import Ella.task.ToDo;
 
-import java.io.IOException;
-
-public class ToDoCommand extends Command{
+public class ToDoCommand extends Command {
     private final String description;
 
     public ToDoCommand(String description) {

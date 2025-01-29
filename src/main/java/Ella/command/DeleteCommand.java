@@ -1,13 +1,13 @@
 package Ella.command;
 
+import java.io.IOException;
+
 import Ella.utils.Storage;
 import Ella.utils.TaskList;
 import Ella.task.Task;
 
-import java.io.IOException;
-
 public class DeleteCommand extends Command {
-    private int id;
+    private final int id;
 
     public DeleteCommand(int id) {
         this.id = id;

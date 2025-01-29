@@ -2,6 +2,7 @@ package Ella.command;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+
 import Ella.utils.Storage;
 import Ella.utils.TaskList;
 import Ella.task.Event;
@@ -12,6 +13,7 @@ public class EventCommand extends Command {
     public EventCommand(String[] args) {
         this.args = args;
     }
+
     public Event createEvent() {
         LocalDateTime from = parseTime(args[1]);
         LocalDateTime to = parseTime(args[2]);
