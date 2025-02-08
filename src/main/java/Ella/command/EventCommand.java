@@ -48,10 +48,11 @@ public class EventCommand extends Command {
      * @throws IOException When {@code taskList} cannot be saved into JSON file
      */
     @Override
-    public void execute(Storage storage, TaskList taskList) throws IOException {
+    public String execute(Storage storage, TaskList taskList) throws IOException {
         Event event = createEvent();
-        taskList.process(event);
+        String output = taskList.process(event);
         storage.updateTasks(taskList);
+        return output;
     }
 
     @Override

@@ -20,20 +20,24 @@ public class ArrangeCommand extends Command {
      *
      * @param tasks An ArrayList containing Task Objects
      */
-    public void arrangeTasks(ArrayList<Task> tasks) {
+    public String arrangeTasks(ArrayList<Task> tasks) {
         List<Task> sortedTasks = tasks.stream()
                 .filter(task -> !task.isDone())
                 .sorted(new TaskComparator())
                 .toList();
 
+        StringBuilder result = new StringBuilder();
+
         if (!sortedTasks.isEmpty()) {
-            System.out.println("Ok here are your tasks arranged by deadline");
+            result.append("Ok here are your tasks arranged by deadline:\n");
             for (Task task : sortedTasks) {
-                System.out.println(task);
+                result.append(task).append("\n");
             }
         } else {
-            System.out.println("You don't have any tasks to be arranged!!");
+            result.append("You don't have any tasks to be arranged!!\n");
         }
+
+        return result.toString();
 
 
     }
@@ -48,9 +52,9 @@ public class ArrangeCommand extends Command {
      * @param taskList An ArrayList containing tasks
      */
     @Override
-    public void execute(Storage storage, TaskList taskList) {
+    public String execute(Storage storage, TaskList taskList) {
         ArrayList<Task> tasks = taskList.getAllTasks();
-        arrangeTasks(tasks);
+        return arrangeTasks(tasks);
     }
 
     @Override

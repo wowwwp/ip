@@ -26,51 +26,38 @@ public class Ella {
         this.storage = new Storage();
         this.tasks = new TaskList();
 
+    }
+
+    public String populateTasks() {
         try {
             tasks = new TaskList(storage.loadTasks());
+            return "Nice! I loaded all your past tasks.";
         } catch (FileNotFoundException e) {
-            ui.printLines();
-            ui.printErrors(e);
+            return ui.showErrors(e);
         } catch (IndexOutOfBoundsException e) {
-            ui.printLines();
-            ui.printErrors("Erm there has been issues with the loading the tasks...Did you do something..");
+            return ui.showErrors("Erm there has been issues with the loading the tasks...Did you do something..");
         } catch (DateTimeParseException e) {
-            ui.printLines();
-            ui.printErrors("So the dates were not stored correctly in your file..We have to start over.....");
+            return ui.showErrors("So the dates were not stored correctly in your file..We have to start over.....");
         }
     }
 
     /**
      * Main function for Ella which handles all user input and errors encountered.
      */
-    public void run() {
-        ui.greet();
-
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String line = ui.readCommand();
-                ui.printLines();
-                Command c = Parser.parse(line);
-                isExit = c.isExit();
-                c.execute(storage, tasks);
-                ui.printLines();
-            } catch (NumberFormatException e) {
-                ui.printErrors("You need to give me a valid task number...");
-            } catch (DateTimeParseException e) {
-                ui.printErrors("You got to follow the format to enter dates it is like dd/mm/yyyy Hhmm");
-            } catch (InvalidCommand | DateTimeException e) {
-                ui.printErrors(e);
-            } catch (IOException e) {
-                ui.printErrors("There has been some error saving your file :( Your tasks are not saved..");
-                ui.printLines();
-            }
+    public String run(String input) {
+        try {
+            Command c = Parser.parse(input);
+            return c.execute(storage, tasks);
+        } catch (NumberFormatException e) {
+            return ui.showErrors("You need to give me a valid task number...");
+        } catch (DateTimeParseException e) {
+            return ui.showErrors("You got to follow the format to enter dates it is like dd/mm/yyyy Hhmm");
+        } catch (InvalidCommand | DateTimeException e) {
+            return ui.showErrors(e);
+        } catch (IOException e) {
+            return ui.showErrors("There has been some error saving your file :( Your tasks are not saved..");
         }
 
-
     }
 
-    public static void main(String[] args) {
-        new Ella().run();
-    }
 }

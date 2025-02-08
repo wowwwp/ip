@@ -11,14 +11,6 @@ import Ella.task.Task;
  * tasks in the order the user has input them.
  */
 public class ListCommand extends Command {
-    /** Prints all the tasks present in {@code task}**/
-    private void printTasks(ArrayList<Task> tasks) {
-        System.out.println("This is what you got:");
-        for (int i = 0; i < tasks.size(); i++) {
-            System.out.printf("%d.%s%n", i + 1, tasks.get(i));
-        }
-
-    }
 
     /**
      * {@inheritDoc}
@@ -30,9 +22,18 @@ public class ListCommand extends Command {
      * @param taskList An ArrayList containing tasks
      */
     @Override
-    public void execute(Storage storage, TaskList taskList) {
+    public String execute(Storage storage, TaskList taskList) {
         ArrayList<Task> tasks = taskList.getAllTasks();
-        printTasks(tasks);
+
+        StringBuilder result = new StringBuilder();
+
+        result.append("This is what you got:\n");
+
+        for (int i = 0; i < tasks.size(); i++) {
+            result.append(String.format("%d.%s\n", i + 1, tasks.get(i)));
+        }
+
+        return result.toString();
     }
 
     @Override

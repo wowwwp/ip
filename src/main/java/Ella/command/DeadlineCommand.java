@@ -46,10 +46,11 @@ public class DeadlineCommand extends Command {
      * @throws IOException When {@code taskList} cannot be saved into JSON file
      */
     @Override
-    public void execute(Storage storage, TaskList taskList) throws IOException {
+    public String execute(Storage storage, TaskList taskList) throws IOException {
         Deadline deadline = createDeadline();
-        taskList.process(deadline);
+        String output = taskList.process(deadline);
         storage.updateTasks(taskList);
+        return output;
     }
 
     @Override

@@ -53,16 +53,21 @@ public abstract class Task {
         this.isDone = isDone;
     }
 
-    public void setAsDone() {
+    public String setAsDone() {
         this.isDone = true;
-        System.out.println("Wow someone was productive");
-        System.out.println(this);
+
+        String result = "Wow someone was productive\n" +
+                this + "\n";
+        return result;
     }
 
-    public void setAsUndone() {
+    public String setAsUndone() {
         this.isDone = false;
         System.out.println("Well i guess this is a future you problem");
         System.out.println(this);
+        String result = "Well i guess this is a future you problem\n" +
+                this + "\n";
+        return result;
     }
 
     public String getStatusIcon() {
