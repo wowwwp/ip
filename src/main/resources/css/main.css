@@ -1,0 +1,56 @@
+.root {
+    main-color: #FAF0E6;       /* Create a looked-up color called "main-color" within root. */
+    -fx-background-color: main-color;
+}
+
+.text-field {
+    --fx-background-color: #faeadf; /* Beige background */
+    -fx-border-color: #C19A6B;     /* Wood brown border */
+    -fx-border-radius: 5;          /* Rounded corners */
+    -fx-background-radius: 5;
+}
+
+.text-field:focused {
+    -fx-background-color: #fbe8db; /* Slightly darker beige */
+    -fx-border-color: #8B4513;     /* Saddle brown border */
+}
+
+.button {
+    -fx-background-color: #A0522D;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font: italic bold 16px "Arial";
+}
+
+.button:hover {
+    -fx-background-color: #C07040;
+    -fx-font-size: 18px;
+}
+
+.button:pressed {
+    -fx-background-color: #8B4513;
+    -fx-font-size: 20px;
+}
+
+.scroll-pane,
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar {
+    -fx-font-size: 10px;  /* Change width of scroll bar. */
+    -fx-background-color: main-color;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #cfbfa7;
+    -fx-background-radius: 1em;
+}
+
+/* Hides the increment and decrement buttons. */
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-pref-height: 0;
+    -fx-opacity: 0;
+}
+
