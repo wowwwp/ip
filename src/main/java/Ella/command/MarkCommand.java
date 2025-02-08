@@ -36,12 +36,14 @@ public class MarkCommand extends Command{
      * @throws IOException If there are issues saving the taskList in the JSON file
      */
     @Override
-    public void execute(Storage storage, TaskList taskList) throws IOException {
+    public String execute(Storage storage, TaskList taskList) throws IOException {
         if (taskList.checkTask(id)) {
             Task task = taskList.getTask(id);
-            task.setAsDone();
+            String output = task.setAsDone();
             storage.updateTasks(taskList);
+            return output;
         }
+        return "";
     }
 
     @Override

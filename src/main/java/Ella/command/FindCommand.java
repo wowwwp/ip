@@ -16,15 +16,20 @@ public class FindCommand extends Command {
 
 
     @Override
-    public void execute(Storage storage, TaskList taskList) throws IOException {
+    public String execute(Storage storage, TaskList taskList) throws IOException {
         ArrayList<Task> tasks = taskList.getAllTasks();
-        System.out.println("Here are the matching tasks in your list:");
+        StringBuilder result = new StringBuilder();
+
+        result.append("Here are the matching tasks in your list:\n");
+
         for (Task task : tasks) {
             String taskDescription = task.getDescription();
             if (taskDescription.contains(find)) {
-                System.out.println(task);
+                result.append(task).append("\n");
             }
         }
+
+        return result.toString();
     }
 
     @Override

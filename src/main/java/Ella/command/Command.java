@@ -26,7 +26,7 @@ public abstract class Command {
      * @param taskList An ArrayList containing tasks
      * @throws IOException If an error occurs when saving tasks to the taskList
      */
-    public abstract void execute(Storage storage, TaskList taskList) throws IOException;
+    public abstract String execute(Storage storage, TaskList taskList) throws IOException;
     
     /**
      * Indicates if the chatbot needs to exit after the command

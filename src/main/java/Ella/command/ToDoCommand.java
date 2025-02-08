@@ -34,10 +34,11 @@ public class ToDoCommand extends Command{
      * @throws IOException When {@code taskList} cannot be saved into JSON file
      */
     @Override
-    public void execute(Storage storage, TaskList taskList) throws IOException {
+    public String execute(Storage storage, TaskList taskList) throws IOException {
         ToDo toDo = new ToDo(description);
-        taskList.process(toDo);
+        String output = taskList.process(toDo);
         storage.updateTasks(taskList);
+        return output;
     }
 
     @Override

@@ -23,10 +23,14 @@ public class TaskList {
      * Deletes a task from the task list.
      * @param task Task which needs to be removed
      */
-    public void deleteTask(Task task) {
+    public String deleteTask(Task task) {
         tasks.remove(task);
-        System.out.printf("Ok got ya...I will remove this from the list...%n%s%nYou have %d tasks left%n",
-                          task.toString(), tasks.size());
+        StringBuilder result = new StringBuilder();
+
+        result.append(String.format("Ok got ya...I will remove this from the list...\n%s\nYou have %d tasks left\n",
+                task.toString(), tasks.size()));
+
+        return result.toString();
     }
 
     /**
@@ -52,10 +56,13 @@ public class TaskList {
      *
      * @param task {@link Task} which needs to added into the ArrayList.
      */
-    public void process(Task task) {
+    public String process(Task task) {
         tasks.add(task);
-        System.out.println("Ok, I will add this in...");
-        System.out.printf("%s%nYou have %d tasks in the list%n", task.toString(), tasks.size());
+        StringBuilder result = new StringBuilder();
+
+        result.append("Ok, I will add this in...\n");
+        result.append(String.format("%s%nYou have %d tasks in the list%n", task.toString(), tasks.size()));
+        return result.toString();
     }
 
 

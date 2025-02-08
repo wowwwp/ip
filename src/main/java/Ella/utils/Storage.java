@@ -35,7 +35,7 @@ public class Storage {
     public ArrayList<Task> loadTasks() throws FileNotFoundException {
         Path pathToFile = Paths.get(USER_DIR, DIRECTORY_PATH, FILE_NAME);
         if (!Files.exists(pathToFile)) {
-            throw new FileNotFoundException("Uhh the data file does not exist");
+            throw new FileNotFoundException("Uhh looks like you don't have any previous tasks");
         }
 
         ArrayList<Task> tasks = new ArrayList<>();

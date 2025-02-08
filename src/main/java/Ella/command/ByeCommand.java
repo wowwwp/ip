@@ -11,8 +11,8 @@ import Ella.utils.TaskList;
 public class ByeCommand extends Command {
 
     @Override
-    public void execute(Storage s, TaskList taskList) {
-        System.out.println("Bye... I know you will come back soon!");
+    public String execute(Storage s, TaskList taskList) {
+        return "Bye... I know you will come back soon!";
     }
 
     @Override
