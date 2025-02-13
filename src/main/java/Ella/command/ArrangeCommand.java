@@ -28,18 +28,16 @@ public class ArrangeCommand extends Command {
 
         StringBuilder result = new StringBuilder();
 
-        if (!sortedTasks.isEmpty()) {
-            result.append("Ok here are your tasks arranged by deadline:\n");
-            for (Task task : sortedTasks) {
-                result.append(task).append("\n");
-            }
-        } else {
+        if (sortedTasks.isEmpty()) {
             result.append("You don't have any tasks to be arranged!!\n");
+            return result.toString();
         }
 
+        result.append("Ok here are your tasks arranged by deadline:\n");
+        for (Task task : sortedTasks) {
+            result.append(task).append("\n");
+        }
         return result.toString();
-
-
     }
 
     /**

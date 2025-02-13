@@ -121,7 +121,6 @@ public class Parser {
     public static Integer getTaskId(String[] splits) throws InvalidCommand {
         // Check if task number is present
         checkInputFormat(splits, 2, "You need to give me a valid task number...");
-        // Parse integer
         int id = Integer.parseInt(splits[1]);
         return id - 1;
     }

@@ -32,7 +32,7 @@ public class Storage {
      * @return ArrayList containing all the tasks found in the JSON file
      * @throws FileNotFoundException If the JSON file is not present in the initial directory
      */
-    public ArrayList<Task> loadTasks() throws FileNotFoundException {
+    public ArrayList<Task> loadTasks() throws IOException {
         Path pathToFile = Paths.get(USER_DIR, DIRECTORY_PATH, FILE_NAME);
         if (!Files.exists(pathToFile)) {
             throw new FileNotFoundException("Uhh looks like you don't have any previous tasks");
@@ -46,34 +46,41 @@ public class Storage {
         for (JsonElement jsonObject : jsonArray) {
             JsonObject jsonTask = jsonObject.getAsJsonObject();
             String taskType = jsonTask.get("type").getAsString();
-            switch (taskType) {
-            case "ToDo":
-                ToDo toDo = new ToDo(jsonTask.get("name").getAsString(), jsonTask.get("completed").getAsBoolean());
-                tasks.add(toDo);
-                break;
-            case "Deadline":
-                String deadlineString = jsonTask.get("dates").getAsJsonArray().get(0).getAsString();
-                LocalDateTime date = LocalDateTime.parse(deadlineString);
-                Deadline deadline = new Deadline(jsonTask.get("name").getAsString(),
-                        jsonTask.get("completed").getAsBoolean(), date);
-                tasks.add(deadline);
-                break;
-            case "Event":
-                JsonArray dates = jsonTask.get("dates").getAsJsonArray();
-                String fromString = dates.get(0).getAsString();
-                LocalDateTime from = LocalDateTime.parse(fromString);
-                String toString = dates.get(1).getAsString();
-                LocalDateTime to = LocalDateTime.parse(toString);
-                Event event = new Event(jsonTask.get("name").getAsString(),
-                        jsonTask.get("completed").getAsBoolean(), from, to);
-                tasks.add(event);
-                break;
-            }
-
-
+            Task parsedTask = parseTask(jsonTask, taskType);
+            tasks.add(parsedTask);
         }
 
         return tasks;
+    }
+
+    /**
+     * Converts the JSON object into a {@link Task}.
+     *
+     * @param jsonTask JsonObject representing a Task
+     * @param taskType Type of task to be created
+     * @return new {@link Task}
+     * @throws IOException if {@link Task} cannot be parsed properly
+     */
+    private Task parseTask(JsonObject jsonTask, String taskType) throws IOException {
+        switch (taskType) {
+        case "ToDo":
+            return new ToDo(jsonTask.get("name").getAsString(), jsonTask.get("completed").getAsBoolean());
+        case "Deadline":
+            String deadlineString = jsonTask.get("dates").getAsJsonArray().get(0).getAsString();
+            LocalDateTime date = LocalDateTime.parse(deadlineString);
+            return new Deadline(jsonTask.get("name").getAsString(),
+                    jsonTask.get("completed").getAsBoolean(), date);
+        case "Event":
+            JsonArray dates = jsonTask.get("dates").getAsJsonArray();
+            String fromString = dates.get(0).getAsString();
+            LocalDateTime from = LocalDateTime.parse(fromString);
+            String toString = dates.get(1).getAsString();
+            LocalDateTime to = LocalDateTime.parse(toString);
+            return new Event(jsonTask.get("name").getAsString(),
+                    jsonTask.get("completed").getAsBoolean(), from, to);
+        default:
+            throw new IOException("Unknown task found, can't load your tasks");
+        }
     }
 
     /**
@@ -83,7 +90,7 @@ public class Storage {
      * @param task Task which needs to be converted to a JsonObject
      * @return A JsonObject which represents the {@link Task}
      */
-    public JsonObject taskToJson(Task task) {
+    private JsonObject taskToJson(Task task) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("type", task.getClass().getSimpleName());
         jsonObject.addProperty("completed", task.isDone());

@@ -32,7 +32,7 @@ public class Ella {
         try {
             tasks = new TaskList(storage.loadTasks());
             return "Nice! I loaded all your past tasks.";
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             return ui.showErrors(e);
         } catch (IndexOutOfBoundsException e) {
             return ui.showErrors("Erm there has been issues with the loading the tasks...Did you do something..");

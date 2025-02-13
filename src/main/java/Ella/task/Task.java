@@ -6,10 +6,6 @@ import java.time.format.DateTimeFormatter;
 /**
  * Represents a Task.
  *
- * <p>This abstract class defines the blueprint for all tasks.
- * Subclasses must contain which represent the description of the task
- * as well as boolean representing if a task is complete.</p>
- *
  * <p>This class provides common methods for marking tasks as done or undone.
  * Subclasses are required to implement specific methods for returning of relevant dates as each task
  * will have a different number of dates associated with them.</p>
@@ -22,6 +18,7 @@ public abstract class Task {
     private boolean isDone;
     protected DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy h:mma");
     // abstract methods
+
     /**
      * Returns all dates associated with the given task
      * @return An array containing dates
@@ -56,18 +53,16 @@ public abstract class Task {
     public String setAsDone() {
         this.isDone = true;
 
-        String result = "Wow someone was productive\n" +
+        String output = "Wow someone was productive\n" +
                 this + "\n";
-        return result;
+        return output;
     }
 
     public String setAsUndone() {
         this.isDone = false;
-        System.out.println("Well i guess this is a future you problem");
-        System.out.println(this);
-        String result = "Well i guess this is a future you problem\n" +
+        String output = "Well i guess this is a future you problem\n" +
                 this + "\n";
-        return result;
+        return output;
     }
 
     public String getStatusIcon() {

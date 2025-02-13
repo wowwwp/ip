@@ -8,7 +8,7 @@ import ella.utils.Storage;
 import ella.utils.TaskList;
 
 public class FindCommand extends Command {
-    private String find;
+    private final String find;
 
     public FindCommand(String find) {
         this.find = find;

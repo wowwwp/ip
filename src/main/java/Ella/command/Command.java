@@ -20,7 +20,7 @@ import ella.utils.TaskList;
  */
 public abstract class Command {
     /**
-     * Exectes the main functionality of the command
+     * Executes the main functionality of the command
      *
      * @param storage Handles saving and loading tasks when taskList changes
      * @param taskList An ArrayList containing tasks
@@ -36,7 +36,7 @@ public abstract class Command {
     /**
      * Parses time from a String to a LocalDateTime object. It  only accepts time
      * in dd/MM/yyyy HHmm format. Any time after 31/12/3035 would result in an
-     * exception
+     * exception.
      *
      * @param time A String representing time
      * @return LocalDateTime object representing time
