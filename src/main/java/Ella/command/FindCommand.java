@@ -1,14 +1,14 @@
-package Ella.command;
+package ella.command;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import Ella.task.Task;
-import Ella.utils.Storage;
-import Ella.utils.TaskList;
+import ella.task.Task;
+import ella.utils.Storage;
+import ella.utils.TaskList;
 
 public class FindCommand extends Command {
-    private String find;
+    private final String find;
 
     public FindCommand(String find) {
         this.find = find;

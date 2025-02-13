@@ -1,4 +1,4 @@
-package Ella.errors;
+package ella.errors;
 
 /**
  * Represents a custom exception thrown when the user input cannot

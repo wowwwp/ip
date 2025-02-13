@@ -1,16 +1,16 @@
-package Ella;
+package ella;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.format.DateTimeParseException;
 
-import Ella.command.Command;
-import Ella.errors.InvalidCommand;
-import Ella.utils.Parser;
-import Ella.utils.Storage;
-import Ella.utils.TaskList;
-import Ella.utils.Ui;
+import ella.command.Command;
+import ella.errors.InvalidCommand;
+import ella.utils.Parser;
+import ella.utils.Storage;
+import ella.utils.TaskList;
+import ella.utils.Ui;
 
 public class Ella {
     private final Ui ui;
@@ -32,7 +32,7 @@ public class Ella {
         try {
             tasks = new TaskList(storage.loadTasks());
             return "Nice! I loaded all your past tasks.";
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             return ui.showErrors(e);
         } catch (IndexOutOfBoundsException e) {
             return ui.showErrors("Erm there has been issues with the loading the tasks...Did you do something..");

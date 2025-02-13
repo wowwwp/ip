@@ -1,4 +1,4 @@
-package Ella.task;
+package ella.task;
 
 import java.time.LocalDateTime;
 
@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
  * Represents an event task. It contains the description of
  * the task, when the event starts as well as when the event ends.
  */
+
 public class Event extends Task {
     private final LocalDateTime from;
     private final LocalDateTime to;
@@ -22,6 +23,7 @@ public class Event extends Task {
         this.from = from;
         this.to = to;
     }
+
     /**
      *{@inheritDoc}
      *
@@ -34,6 +36,7 @@ public class Event extends Task {
     public LocalDateTime[] getDates() {
         return new LocalDateTime[]{from, to};
     }
+
     /**
      * {@inheritDoc}
      *

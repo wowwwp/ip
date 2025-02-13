@@ -1,12 +1,12 @@
-package Ella.command;
+package ella.command;
 
 import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import Ella.utils.Storage;
-import Ella.utils.TaskList;
+import ella.utils.Storage;
+import ella.utils.TaskList;
 
 /**
  * Represents a generic command in the system.
@@ -37,7 +37,7 @@ public abstract class Command {
     /**
      * Parses time from a String to a LocalDateTime object. It  only accepts time
      * in dd/MM/yyyy HHmm format. Any time after 31/12/3035 would result in an
-     * exception
+     * exception.
      *
      * @param time A String representing time
      * @return LocalDateTime object representing time

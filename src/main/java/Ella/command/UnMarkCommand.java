@@ -1,10 +1,10 @@
-package Ella.command;
+package ella.command;
 
 import java.io.IOException;
 
-import Ella.utils.Storage;
-import Ella.utils.TaskList;
-import Ella.task.Task;
+import ella.utils.Storage;
+import ella.utils.TaskList;
+import ella.task.Task;
 
 
 /**
@@ -27,9 +27,8 @@ public class UnMarkCommand extends Command {
     /**
      * {@inheritDoc}
      *
-     *<p>Checks if a given index is a valid index and then obtains the task
-     * from the {@code taskList}. The task is then unmarked as done. The JSON file
-     * gets updated with the changes.</p>
+     *<p>Checks if a given index is a valid index and then unmarks the task.
+     * The JSON file gets updated with the changes.</p>
      *
      * @param storage Handles saving and loading tasks when taskList changes
      * @param taskList An ArrayList containing tasks

@@ -1,12 +1,12 @@
-package Ella.command;
+package ella.command;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import Ella.task.Task;
-import Ella.task.TaskComparator;
-import Ella.utils.Storage;
-import Ella.utils.TaskList;
+import ella.task.Task;
+import ella.task.TaskComparator;
+import ella.utils.Storage;
+import ella.utils.TaskList;
 
 /**
  * Represents arrange command which arranges tasks that
@@ -27,20 +27,17 @@ public class ArrangeCommand extends Command {
                 .toList();
 
         StringBuilder result = new StringBuilder();
-
-        if (!sortedTasks.isEmpty()) {
-            result.append("Ok here are your tasks arranged by deadline:\n");
-            for (Task task : sortedTasks) {
-                result.append(task).append("\n");
-            }
-        } else {
-            assert result.isEmpty();
+        
+        if (sortedTasks.isEmpty()) {
             result.append("You don't have any tasks to be arranged!!\n");
+            return result.toString();
         }
 
+        result.append("Ok here are your tasks arranged by deadline:\n");
+        for (Task task : sortedTasks) {
+            result.append(task).append("\n");
+        }
         return result.toString();
-
-
     }
 
     /**

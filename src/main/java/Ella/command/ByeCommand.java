@@ -1,7 +1,7 @@
-package Ella.command;
+package ella.command;
 
-import Ella.utils.Storage;
-import Ella.utils.TaskList;
+import ella.utils.Storage;
+import ella.utils.TaskList;
 
 /**
  * Represents the bye command, which prints a goodbye message
