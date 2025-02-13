@@ -32,6 +32,7 @@ public class EventCommand extends Command {
      * @return A {@link Event} which contains the task description, from time and to time.
      */
     protected Event createEvent() {
+        assert args.length == 3;
         LocalDateTime from = parseTime(args[1]);
         LocalDateTime to = parseTime(args[2]);
         return new Event(args[0], from, to);

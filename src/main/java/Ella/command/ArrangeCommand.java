@@ -27,7 +27,7 @@ public class ArrangeCommand extends Command {
                 .toList();
 
         StringBuilder result = new StringBuilder();
-
+        
         if (sortedTasks.isEmpty()) {
             result.append("You don't have any tasks to be arranged!!\n");
             return result.toString();

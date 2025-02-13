@@ -58,6 +58,11 @@ public class MainWindow extends AnchorPane {
         }
     }
 
+    /**
+     * Shows messages which does not require any user input.
+     *
+     * @param greeting
+     */
     public void showMessage(String greeting) {
         dialogContainer.getChildren().addAll(DialogBox.getEllaDialog(greeting, ellaImage)
         );

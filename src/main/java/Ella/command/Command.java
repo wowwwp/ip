@@ -19,6 +19,7 @@ import ella.utils.TaskList;
  * ensuring a consistent structure and behavior across different command types.</p>
  */
 public abstract class Command {
+
     /**
      * Executes the main functionality of the command
      *

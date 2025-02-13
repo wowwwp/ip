@@ -20,7 +20,8 @@ public abstract class Task {
     // abstract methods
 
     /**
-     * Returns all dates associated with the given task
+     * Returns all dates associated with the given task for saving them into a JSON file.
+     *
      * @return An array containing dates
      */
     public abstract LocalDateTime[] getDates();
@@ -60,6 +61,7 @@ public abstract class Task {
 
     public String setAsUndone() {
         this.isDone = false;
+
         String output = "Well i guess this is a future you problem\n" +
                 this + "\n";
         return output;

@@ -42,6 +42,7 @@ public class UnMarkCommand extends Command {
             storage.updateTasks(taskList);
             return output;
         }
+        assert !taskList.checkTask(id);
         return "";
     }
 
