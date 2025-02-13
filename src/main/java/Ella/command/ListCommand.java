@@ -27,10 +27,15 @@ public class ListCommand extends Command {
 
         StringBuilder result = new StringBuilder();
 
-        result.append("This is what you got:\n");
 
         for (int i = 0; i < tasks.size(); i++) {
             result.append(String.format("%d.%s\n", i + 1, tasks.get(i)));
+        }
+
+        if (!result.isEmpty()) {
+            result.insert(0, "This is what you got:\n");
+        } else {
+            result.append("You have no tasks for now\n");
         }
 
         return result.toString();

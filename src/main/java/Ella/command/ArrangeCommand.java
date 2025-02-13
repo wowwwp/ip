@@ -34,6 +34,7 @@ public class ArrangeCommand extends Command {
                 result.append(task).append("\n");
             }
         } else {
+            assert result.isEmpty();
             result.append("You don't have any tasks to be arranged!!\n");
         }
 

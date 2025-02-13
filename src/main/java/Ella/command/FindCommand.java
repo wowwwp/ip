@@ -20,13 +20,17 @@ public class FindCommand extends Command {
         ArrayList<Task> tasks = taskList.getAllTasks();
         StringBuilder result = new StringBuilder();
 
-        result.append("Here are the matching tasks in your list:\n");
-
         for (Task task : tasks) {
             String taskDescription = task.getDescription();
             if (taskDescription.contains(find)) {
                 result.append(task).append("\n");
             }
+        }
+
+        if (result.isEmpty()) {
+            result.append("No matching tasks found\n");
+        } else {
+            result.insert(0, "Here are the matching tasks:\n");
         }
 
         return result.toString();

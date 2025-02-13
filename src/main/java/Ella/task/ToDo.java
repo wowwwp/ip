@@ -33,7 +33,7 @@ public class ToDo extends Task {
      * {@inheritDoc}
      *
      * <p> As no dates are associated with {@link ToDo}, a large date is returned
-     * as their order of importance is not high compared to tasks with clear deadline.</p>
+     * as its order of importance is not high compared to tasks with clear deadline.</p>
      *
      * @return A date for comparison
      */

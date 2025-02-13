@@ -27,7 +27,7 @@ public class TaskList {
         tasks.remove(task);
         StringBuilder result = new StringBuilder();
 
-        result.append(String.format("Ok got ya...I will remove this from the list...\n%s\nYou have %d tasks left\n",
+        result.append(String.format("Ok got ya...I will remove this from the list...\n%s\nYou have %d task(s) left\n",
                 task.toString(), tasks.size()));
 
         return result.toString();
@@ -61,7 +61,7 @@ public class TaskList {
         StringBuilder result = new StringBuilder();
 
         result.append("Ok, I will add this in...\n");
-        result.append(String.format("%s%nYou have %d tasks in the list%n", task.toString(), tasks.size()));
+        result.append(String.format("%s%nYou have %d task(s) in the list%n", task.toString(), tasks.size()));
         return result.toString();
     }
 

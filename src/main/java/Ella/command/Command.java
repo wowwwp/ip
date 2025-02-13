@@ -19,8 +19,9 @@ import Ella.utils.TaskList;
  * ensuring a consistent structure and behavior across different command types.</p>
  */
 public abstract class Command {
+
     /**
-     * Exectes the main functionality of the command
+     * Executes the main functionality of the command
      *
      * @param storage Handles saving and loading tasks when taskList changes
      * @param taskList An ArrayList containing tasks
