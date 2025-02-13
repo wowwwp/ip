@@ -43,6 +43,7 @@ public class MarkCommand extends Command{
             storage.updateTasks(taskList);
             return output;
         }
+        assert !taskList.checkTask(id);
         return "";
     }
 

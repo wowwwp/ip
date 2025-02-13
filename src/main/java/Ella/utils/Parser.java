@@ -53,6 +53,7 @@ public class Parser {
      */
     public static String parseToDo(String[] splits) throws IndexOutOfBoundsException {
         checkInputFormat(splits, 2, "You need to have a task for todo!!");
+        assert splits.length == 2;
         return splits[1];
     }
 
@@ -68,10 +69,12 @@ public class Parser {
         // Check if its empty after deadline
         checkInputFormat(splits, 2,
                 "Uhh you need to have a task and a date after the /by field...");
+        assert splits.length == 2;
         // Check if input format for deadline is correct
         String[] splitsDeadline = splits[1].split("/by");
         checkInputFormat(splitsDeadline, 2,
                 "Uhh you don't have a task or a date after the /by field...");
+        assert splitsDeadline.length == 2;
         return splitsDeadline;
     }
 
@@ -89,14 +92,17 @@ public class Parser {
         // Check if its empty after event
         checkInputFormat(splits, 2,
                 "Uhh you need to have a task, a date after the /from field and a date after the /to field...");
+        assert splits.length == 2;
         // Check if there is task and a date after /from
         String[] splitOne = splits[1].split("/from");
         checkInputFormat(splitOne, 2,
                 "Uhh you don't have a task or a date after the /from field...");
+        assert splitOne.length == 2;
         // Check if there is /from and /to
         String[] splitTwo = splitOne[1].split("/to");
         checkInputFormat(splitTwo, 2,
                 "Uhh you don't have a date after the /from field or the /to field...");
+        assert splitTwo.length == 2;
         return new String[]{splitOne[0], splitTwo[0], splitTwo[1]};
     }
 
@@ -108,6 +114,7 @@ public class Parser {
      */
     public static String parseFind(String[] splits) {
         checkInputFormat(splits, 2, "You need to give me something to find...");
+        assert splits.length == 2;
         return splits[1];
     }
 
@@ -121,6 +128,7 @@ public class Parser {
     public static Integer getTaskId(String[] splits) throws InvalidCommand {
         // Check if task number is present
         checkInputFormat(splits, 2, "You need to give me a valid task number...");
+        assert splits.length == 2;
         // Parse integer
         int id = Integer.parseInt(splits[1]);
         return id - 1;

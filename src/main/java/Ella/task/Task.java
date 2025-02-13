@@ -23,7 +23,8 @@ public abstract class Task {
     protected DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy h:mma");
     // abstract methods
     /**
-     * Returns all dates associated with the given task
+     * Returns all dates associated with the given task for saving them into a JSON file.
+     *
      * @return An array containing dates
      */
     public abstract LocalDateTime[] getDates();
@@ -55,7 +56,6 @@ public abstract class Task {
 
     public String setAsDone() {
         this.isDone = true;
-
         String result = "Wow someone was productive\n" +
                 this + "\n";
         return result;
@@ -63,8 +63,6 @@ public abstract class Task {
 
     public String setAsUndone() {
         this.isDone = false;
-        System.out.println("Well i guess this is a future you problem");
-        System.out.println(this);
         String result = "Well i guess this is a future you problem\n" +
                 this + "\n";
         return result;
