@@ -27,8 +27,8 @@ public abstract class Task {
     public abstract LocalDateTime[] getDates();
 
     /**
-     * Returns a date that can be used to compare tasks. This date is typically used to determine
-     * the order or priority of tasks based on their deadlines.
+     * Returns a date that can be used to compare tasks. This date is used to determine
+     * the order of tasks based on their deadlines.
      *
      * @return A date used for comparison
      */
