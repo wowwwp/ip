@@ -1,11 +1,11 @@
-package Ella.command;
+package ella.command;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 
-import Ella.utils.Storage;
-import Ella.utils.TaskList;
-import Ella.task.Event;
+import ella.utils.Storage;
+import ella.utils.TaskList;
+import ella.task.Event;
 
 /**
  * Represents event command which is responsible for creates a

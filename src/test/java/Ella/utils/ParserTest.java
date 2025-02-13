@@ -1,11 +1,11 @@
-package Ella.utils;
+package ella.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
-import Ella.errors.InvalidCommand;
+import ella.errors.InvalidCommand;
 
 public class ParserTest {
     @Test

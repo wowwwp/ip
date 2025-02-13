@@ -1,4 +1,4 @@
-package Ella.utils;
+package ella.utils;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,10 +12,10 @@ import java.util.ArrayList;
 
 import com.google.gson.*;
 
-import Ella.task.Task;
-import Ella.task.ToDo;
-import Ella.task.Deadline;
-import Ella.task.Event;
+import ella.task.Task;
+import ella.task.ToDo;
+import ella.task.Deadline;
+import ella.task.Event;
 
 /**
  * Encapsulates all functionalities needed for loading and saving tasks in a JSON file.

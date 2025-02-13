@@ -1,12 +1,12 @@
-package Ella.command;
+package ella.command;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import Ella.task.Task;
-import Ella.task.TaskComparator;
-import Ella.utils.Storage;
-import Ella.utils.TaskList;
+import ella.task.Task;
+import ella.task.TaskComparator;
+import ella.utils.Storage;
+import ella.utils.TaskList;
 
 /**
  * Represents arrange command which arranges tasks that

@@ -1,7 +1,7 @@
-package Ella.utils;
+package ella.utils;
 
-import Ella.errors.InvalidCommand;
-import Ella.command.*;
+import ella.errors.InvalidCommand;
+import ella.command.*;
 
 /**
  * Represents a Parser which can parse user input and returns the relevant commands.

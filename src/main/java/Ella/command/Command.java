@@ -1,12 +1,12 @@
-package Ella.command;
+package ella.command;
 
 import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import Ella.utils.Storage;
-import Ella.utils.TaskList;
+import ella.utils.Storage;
+import ella.utils.TaskList;
 
 /**
  * Represents a generic command in the system.

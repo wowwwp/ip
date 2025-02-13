@@ -1,4 +1,4 @@
-package Ella.ui;
+package ella.ui;
 
 import javafx.application.Application;
 

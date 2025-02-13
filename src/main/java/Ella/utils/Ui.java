@@ -1,8 +1,8 @@
-package Ella.utils;
+package ella.utils;
 
 import java.util.Scanner;
 
-import Ella.Ella;
+import ella.Ella;
 
 /**
  * Encapsulates all functionalities needed for user interaction

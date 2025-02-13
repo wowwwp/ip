@@ -1,4 +1,4 @@
-package Ella.ui;
+package ella.ui;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -9,8 +9,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
-import Ella.Ella;
-import Ella.utils.Ui;
+import ella.Ella;
+import ella.utils.Ui;
 
 /**
  * Controller for the main GUI.

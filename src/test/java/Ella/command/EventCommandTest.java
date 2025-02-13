@@ -1,4 +1,4 @@
-package Ella.command;
+package ella.command;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -7,7 +7,7 @@ import java.time.format.DateTimeParseException;
 
 import org.junit.jupiter.api.Test;
 
-import Ella.task.Event;
+import ella.task.Event;
 
 public class EventCommandTest {
     @Test

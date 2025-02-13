@@ -1,4 +1,4 @@
-package Ella.command;
+package ella.command;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -6,7 +6,7 @@ import java.time.format.DateTimeParseException;
 
 import org.junit.jupiter.api.Test;
 
-import Ella.task.Deadline;
+import ella.task.Deadline;
 
 
 public class DeadlineCommandTest {

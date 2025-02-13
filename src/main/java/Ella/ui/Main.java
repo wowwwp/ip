@@ -1,4 +1,4 @@
-package Ella.ui;
+package ella.ui;
 
 import java.io.IOException;
 
@@ -8,8 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import Ella.Ella;
-import Ella.utils.Ui;
+import ella.Ella;
+import ella.utils.Ui;
 
 public class Main extends Application {
 
