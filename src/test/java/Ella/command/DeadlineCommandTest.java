@@ -14,7 +14,7 @@ public class DeadlineCommandTest {
     public void testDeadlineCommand_success() {
         DeadlineCommand command = new DeadlineCommand(new String[]{"read books", " 30/10/2002 1400"});
         Deadline d = command.createDeadline();
-        assertEquals("[D][ ] read books (by: 30-10-2002 2:00pm)", d.toString());
+        assertEquals("[D][ ] read books (by: 30-10-2002 2:00PM)", d.toString());
 
     }
 
