@@ -27,7 +27,6 @@ public class ArrangeCommand extends Command {
                 .toList();
 
         StringBuilder result = new StringBuilder();
-        
         if (sortedTasks.isEmpty()) {
             result.append("Nice! looks like you have nothing to do!!\n");
             return result.toString();

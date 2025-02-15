@@ -18,7 +18,7 @@ public class ToDo extends Task {
     }
 
     /**
-     *{@inheritDoc}
+     * {@inheritDoc}
      *
      * <p> As no date is associated with a {@link ToDo} an empty array is
      * returned. </p>

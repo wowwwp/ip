@@ -3,9 +3,9 @@ package ella.command;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
+import ella.task.Event;
 import ella.utils.Storage;
 import ella.utils.TaskList;
-import ella.task.Event;
 
 /**
  * Represents event command which is responsible for creates a

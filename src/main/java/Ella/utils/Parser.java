@@ -1,7 +1,17 @@
 package ella.utils;
 
+import ella.command.ArrangeCommand;
+import ella.command.ByeCommand;
+import ella.command.Command;
+import ella.command.DeadlineCommand;
+import ella.command.DeleteCommand;
+import ella.command.EventCommand;
+import ella.command.FindCommand;
+import ella.command.ListCommand;
+import ella.command.MarkCommand;
+import ella.command.ToDoCommand;
+import ella.command.UnMarkCommand;
 import ella.errors.InvalidCommand;
-import ella.command.*;
 
 /**
  * Represents a Parser which can parse user input and returns the relevant commands.
@@ -74,6 +84,7 @@ public class Parser {
         String[] splitsDeadline = splits[1].split("/by");
         checkInputFormat(splitsDeadline, 2,
                 "Uhh you don't have a task or a date after the /by field...");
+
         assert splitsDeadline.length == 2;
         return splitsDeadline;
     }
@@ -84,7 +95,7 @@ public class Parser {
      *
      * @param splits An Array containing the user input which is split
      * @return An array containing task description, a date representing when the event starts and
-     * a date representing when the event ends.
+     *         a date representing when the event ends.
      * @throws IndexOutOfBoundsException If the user input does not have a task, date after the from /field or
      *                                   a date after the /to field.
      */

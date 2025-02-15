@@ -15,25 +15,13 @@ import java.time.format.DateTimeFormatter;
  */
 public abstract class Task {
     protected final String description;
-    private boolean isDone;
     protected DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy h:mma");
-    // abstract methods
+    private boolean isDone;
 
     /**
-     * Returns all dates associated with the given task for saving them into a JSON file.
-     *
-     * @return An array containing dates
+     * Instanitates a {@link Task}
+     * @param description description of the task.
      */
-    public abstract LocalDateTime[] getDates();
-
-    /**
-     * Returns a date that can be used to compare tasks. This date is used to determine
-     * the order of tasks based on their deadlines.
-     *
-     * @return A date used for comparison
-     */
-    public abstract LocalDateTime compareDate();
-
     public Task(String description) {
         this.description = description;
         this.isDone = false;
@@ -51,19 +39,35 @@ public abstract class Task {
         this.isDone = isDone;
     }
 
+    // abstract methods
+    /**
+     * Returns all dates associated with the given task for saving them into a JSON file.
+     *
+     * @return An array containing dates
+     */
+    public abstract LocalDateTime[] getDates();
+
+    /**
+     * Returns a date that can be used to compare tasks. This date is used to determine
+     * the order of tasks based on their deadlines.
+     *
+     * @return A date used for comparison
+     */
+    public abstract LocalDateTime compareDate();
+
+
     public String setAsDone() {
         this.isDone = true;
-
-        String output = "Wow someone was productive\n" +
-                this + "\n";
+        String output = "Wow someone was productive\n"
+                + this + "\n";
         return output;
     }
 
     public String setAsUndone() {
         this.isDone = false;
 
-        String output = "Well i guess this is a future you problem\n" +
-                this + "\n";
+        String output = "Well i guess this is a future you problem\n"
+                + this + "\n";
         return output;
     }
 
