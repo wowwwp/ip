@@ -2,16 +2,16 @@ package ella.command;
 
 import java.io.IOException;
 
+import ella.task.Task;
 import ella.utils.Storage;
 import ella.utils.TaskList;
-import ella.task.Task;
 
 
 /**
  * Represents mark command which marks a given
  * task as done.
  */
-public class MarkCommand extends Command{
+public class MarkCommand extends Command {
     private final int id;
 
     /**
@@ -27,7 +27,7 @@ public class MarkCommand extends Command{
     /**
      * {@inheritDoc}
      *
-     *<p>Checks if a given index is a valid index and then obtains the task
+     * <p>Checks if a given index is a valid index and then obtains the task
      * from the {@code taskList}. The task is then marked as done. The JSON file
      * gets updated with the changes.</p>
      *

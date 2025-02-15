@@ -2,16 +2,16 @@ package ella.command;
 
 import java.io.IOException;
 
+import ella.task.ToDo;
 import ella.utils.Storage;
 import ella.utils.TaskList;
-import ella.task.ToDo;
 
 
 /**
  * Represents todo command which creates a new {@link ToDo}
  * and updates the JSON file.
  */
-public class ToDoCommand extends Command{
+public class ToDoCommand extends Command {
     private final String description;
 
     /**

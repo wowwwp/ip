@@ -2,15 +2,17 @@ package ella.ui;
 
 import java.io.IOException;
 
+import ella.Ella;
+import ella.utils.Ui;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import ella.Ella;
-import ella.utils.Ui;
-
+/**
+ * Helper class to launch Ella.
+ */
 public class Main extends Application {
 
     private Ella ella = new Ella();

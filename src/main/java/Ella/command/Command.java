@@ -19,7 +19,7 @@ import ella.utils.TaskList;
  * ensuring a consistent structure and behavior across different command types.</p>
  */
 public abstract class Command {
-
+    private static final LocalDateTime MAX_DATE = LocalDateTime.of(3035, 12, 31, 23, 59);
     /**
      * Executes the main functionality of the command
      *
@@ -28,7 +28,6 @@ public abstract class Command {
      * @throws IOException If an error occurs when saving tasks to the taskList
      */
     public abstract String execute(Storage storage, TaskList taskList) throws IOException;
-    
     /**
      * Indicates if the chatbot needs to exit after the command
      */
@@ -48,7 +47,6 @@ public abstract class Command {
         time = time.trim();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
         LocalDateTime date = LocalDateTime.parse(time, formatter);
-        LocalDateTime MAX_DATE = LocalDateTime.of(3035, 12, 31, 23, 59);
         if (date.isAfter(MAX_DATE)) {
             throw new DateTimeException("That is way too far ahead come on....");
         }

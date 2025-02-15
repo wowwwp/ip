@@ -1,7 +1,7 @@
 package ella.utils;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -43,8 +43,8 @@ public class ParserTest {
         try {
             Parser.parseEvent(testEventMissingTask);
         } catch (InvalidCommand e) {
-            assertEquals("Uhh you need to have a task, a date after the /from field " +
-                            "and a date after the /to field...", e.getMessage());
+            assertEquals("Uhh you need to have a task, a date after the /from field "
+                    + "and a date after the /to field...", e.getMessage());
         }
 
     }

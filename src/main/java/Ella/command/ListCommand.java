@@ -2,9 +2,9 @@ package ella.command;
 
 import java.util.ArrayList;
 
+import ella.task.Task;
 import ella.utils.Storage;
 import ella.utils.TaskList;
-import ella.task.Task;
 
 /**
  * Represents list command which lists all the

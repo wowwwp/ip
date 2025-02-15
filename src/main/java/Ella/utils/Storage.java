@@ -10,12 +10,16 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
-import ella.task.Task;
-import ella.task.ToDo;
 import ella.task.Deadline;
 import ella.task.Event;
+import ella.task.Task;
+import ella.task.ToDo;
 
 /**
  * Encapsulates all functionalities needed for loading and saving tasks in a JSON file.

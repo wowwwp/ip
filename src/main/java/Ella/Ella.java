@@ -1,6 +1,5 @@
 package ella;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.format.DateTimeParseException;
@@ -12,6 +11,10 @@ import ella.utils.Storage;
 import ella.utils.TaskList;
 import ella.utils.Ui;
 
+/**
+ * Main class responsible for initializing helper classes required to process
+ * user input and generate an appropriate output.
+ */
 public class Ella {
     private final Ui ui;
     private final Storage storage;
@@ -28,6 +31,11 @@ public class Ella {
 
     }
 
+    /**
+     * Loads in tasks stored in the JSON file into {@code tasks}.
+     *
+     * @return String representing the status of the file loading process.
+     */
     public String populateTasks() {
         try {
             tasks = new TaskList(storage.loadTasks());

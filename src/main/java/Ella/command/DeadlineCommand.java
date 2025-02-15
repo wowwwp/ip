@@ -3,9 +3,9 @@ package ella.command;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
+import ella.task.Deadline;
 import ella.utils.Storage;
 import ella.utils.TaskList;
-import ella.task.Deadline;
 
 /**
  * Represents deadline command which creates a new Deadline

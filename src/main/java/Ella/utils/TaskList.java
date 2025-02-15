@@ -2,8 +2,8 @@ package ella.utils;
 
 import java.util.ArrayList;
 
-import ella.task.Task;
 import ella.errors.InvalidCommand;
+import ella.task.Task;
 
 /**
  * Encapsulates all functionalities related to adding, deleting and checking if valid tasks are present.

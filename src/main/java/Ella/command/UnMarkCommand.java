@@ -2,9 +2,9 @@ package ella.command;
 
 import java.io.IOException;
 
+import ella.task.Task;
 import ella.utils.Storage;
 import ella.utils.TaskList;
-import ella.task.Task;
 
 
 /**
@@ -27,7 +27,7 @@ public class UnMarkCommand extends Command {
     /**
      * {@inheritDoc}
      *
-     *<p>Checks if a given index is a valid index and then unmarks the task.
+     * <p>Checks if a given index is a valid index and then unmarks the task.
      * The JSON file gets updated with the changes.</p>
      *
      * @param storage Handles saving and loading tasks when taskList changes

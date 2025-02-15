@@ -7,6 +7,10 @@ import ella.task.Task;
 import ella.utils.Storage;
 import ella.utils.TaskList;
 
+/**
+ * Represents the find command, which searches for tasks whose descriptions
+ * contain a given substring provided by the user.
+ */
 public class FindCommand extends Command {
     private final String find;
 
