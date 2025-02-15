@@ -2,6 +2,8 @@ package ella.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.util.Locale;
 
 /**
  * Represents a Task.
@@ -15,7 +17,9 @@ import java.time.format.DateTimeFormatter;
  */
 public abstract class Task {
     protected final String description;
-    protected DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy h:mma");
+    protected DateTimeFormatter formatter = new DateTimeFormatterBuilder()
+            .appendPattern("dd-MM-yyyy h:mma")
+            .toFormatter(Locale.ENGLISH);
     private boolean isDone;
 
     /**

@@ -14,7 +14,7 @@ public class EventCommandTest {
     public void createEventCommand_success() {
         EventCommand eventCommand = new EventCommand(new String[]{"test", "30/06/2002 1600", "21/07/2003 1400"});
         Event event = eventCommand.createEvent();
-        assertEquals("[E][ ] test (from: 30-06-2002 4:00pm to: 21-07-2003 2:00pm)", event.toString());
+        assertEquals("[E][ ] test (from: 30-06-2002 4:00PM to: 21-07-2003 2:00PM)", event.toString());
     }
 
     @Test
