@@ -31,7 +31,7 @@ public class DeadlineCommand extends Command {
      * @return A Deadline which contains the task description and time
      */
     protected Deadline createDeadline() {
-        LocalDateTime by = parseTime(splits[1]);
+        LocalDateTime by = parseTime(splits[1].trim());
         return new Deadline(splits[0], by);
     }
 

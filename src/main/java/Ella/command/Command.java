@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.util.Locale;
 
 import ella.utils.Storage;
 import ella.utils.TaskList;
@@ -45,7 +47,11 @@ public abstract class Command {
      */
     public static LocalDateTime parseTime(String time) throws DateTimeException {
         time = time.trim();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+        DateTimeFormatter formatter = new DateTimeFormatterBuilder()
+                .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"))
+                .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyyy h.mma"))
+                .toFormatter(Locale.ENGLISH);
+
         LocalDateTime date = LocalDateTime.parse(time, formatter);
         if (date.isAfter(MAX_DATE)) {
             throw new DateTimeException("That is way too far ahead come on....");

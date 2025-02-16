@@ -3,6 +3,7 @@ package ella.command;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
+import ella.errors.InvalidCommand;
 import ella.task.Event;
 import ella.utils.Storage;
 import ella.utils.TaskList;
@@ -30,11 +31,15 @@ public class EventCommand extends Command {
      * which is used to create a {@link Event}.
      *
      * @return A {@link Event} which contains the task description, from time and to time.
+     * @throws InvalidCommand when end time is before the start time
      */
-    protected Event createEvent() {
+    protected Event createEvent() throws InvalidCommand {
         assert args.length == 3;
-        LocalDateTime from = parseTime(args[1]);
-        LocalDateTime to = parseTime(args[2]);
+        LocalDateTime from = parseTime(args[1].trim());
+        LocalDateTime to = parseTime(args[2].trim());
+        if (to.isBefore(from)) {
+            throw new InvalidCommand("How can your task end before it starts....");
+        }
         return new Event(args[0], from, to);
     }
 
