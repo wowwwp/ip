@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.Locale;
 
+import ella.errors.InvalidCommand;
+
 /**
  * Represents a Task.
  *
@@ -59,8 +61,20 @@ public abstract class Task {
      */
     public abstract LocalDateTime compareDate();
 
+    public void checkDone(){
+        if (isDone) {
+            throw new InvalidCommand("You can't keep marking a task done....");
+        }
+    }
+
+    public void checkUndone(){
+        if (!isDone) {
+            throw new InvalidCommand("You can't keep marking a task undone....");
+        }
+    }
 
     public String setAsDone() {
+        checkDone();
         this.isDone = true;
         String output = "Wow someone was productive\n"
                 + this + "\n";
@@ -68,8 +82,8 @@ public abstract class Task {
     }
 
     public String setAsUndone() {
+        checkUndone();
         this.isDone = false;
-
         String output = "Well i guess this is a future you problem\n"
                 + this + "\n";
         return output;
