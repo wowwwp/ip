@@ -1,25 +1,22 @@
 .label {
-    -fx-background-color: #F5DEB3; /* Wheat */
-    -fx-text-fill: #4B2E2A;        /* Bole */
+    -fx-background-color: #F5DEB3;
+    -fx-text-fill: #4B2E2A;
     -fx-border-width: 2px;
     -fx-background-radius: 1em 1em 0 1em;
     -fx-border-radius: 1em 1em 0 1em;
     -fx-font-size: 14px;
+    -fx-border-color: #4B2E2A;
 }
 
 .reply-label {
-    -fx-background-color: #D2B48C; /* Tan */
-    -fx-text-fill: #4B2E2A;        /* Bole */
+    -fx-background-color: #D2B48C;
+    -fx-text-fill: #4B2E2A;
     -fx-background-radius: 1em 1em 1em 0;
     -fx-border-radius: 1em 1em 1em 0;
     -fx-font-size: 14px;
 }
 
-#displayPicture {
-    /* Change size of image. */
-    -fx-scale-x: 0.5;
-    -fx-scale-y: 0.5;
+.displayPicture {
     -fx-alignment: center
-
 }
 

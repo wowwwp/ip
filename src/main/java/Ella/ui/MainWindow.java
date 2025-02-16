@@ -10,7 +10,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
-
 /**
  * Controller for the main GUI.
  */
@@ -27,7 +26,7 @@ public class MainWindow extends AnchorPane {
     private Ella ella;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
-    private Image ellaImage = new Image(this.getClass().getResourceAsStream("/images/star.png"));
+    private Image ellaImage = new Image(this.getClass().getResourceAsStream("/images/ella.png"));
 
     @FXML
     public void initialize() {
