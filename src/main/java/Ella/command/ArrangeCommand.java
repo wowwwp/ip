@@ -32,7 +32,7 @@ public class ArrangeCommand extends Command {
             return result.toString();
         }
 
-        result.append("Ok here are your undone tasks arranged by deadline:\n");
+        result.append("Here are your unfinished tasks, arranged:\n");
         for (Task task : sortedTasks) {
             result.append(task).append("\n");
         }

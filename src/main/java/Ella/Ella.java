@@ -46,6 +46,8 @@ public class Ella {
             return ui.showErrors("Erm there has been issues with the loading the tasks...Did you do something..");
         } catch (DateTimeParseException e) {
             return ui.showErrors("So the dates were not stored correctly in your file..We have to start over.....");
+        } catch (Exception e) {
+            return ui.showErrors("Oops...there is some error loading the tasks...");
         }
     }
 
@@ -59,11 +61,13 @@ public class Ella {
         } catch (NumberFormatException e) {
             return ui.showErrors("You need to give me a valid task number...");
         } catch (DateTimeParseException e) {
-            return ui.showErrors("You got to follow the format to enter dates it is like dd/mm/yyyy Hhmm");
+            return ui.showErrors("You got to follow the right format for the dates...");
         } catch (InvalidCommand | DateTimeException e) {
             return ui.showErrors(e);
         } catch (IOException e) {
             return ui.showErrors("There has been some error saving your file :( Your tasks are not saved..");
+        } catch (Exception e) {
+            return ui.showErrors("Oops..there is some error processing that try something else");
         }
 
     }

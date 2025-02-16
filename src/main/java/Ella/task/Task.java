@@ -61,13 +61,19 @@ public abstract class Task {
      */
     public abstract LocalDateTime compareDate();
 
-    public void checkDone(){
+    /**
+     * Checks if a task which is done is getting marked again
+     */
+    public void checkDone() {
         if (isDone) {
             throw new InvalidCommand("You can't keep marking a task done....");
         }
     }
 
-    public void checkUndone(){
+    /**
+     * Checks if a task which is undone is getting unmarked again
+     */
+    public void checkUndone() {
         if (!isDone) {
             throw new InvalidCommand("You can't keep marking a task undone....");
         }
