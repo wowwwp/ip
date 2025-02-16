@@ -1,18 +1,18 @@
 .root {
-    main-color: #FAF0E6;       /* Create a looked-up color called "main-color" within root. */
+    main-color: #f4d7ba;
     -fx-background-color: main-color;
 }
 
 .text-field {
-    --fx-background-color: #faeadf; /* Beige background */
-    -fx-border-color: #C19A6B;     /* Wood brown border */
-    -fx-border-radius: 5;          /* Rounded corners */
+    --fx-background-color: #faeadf;
+    -fx-border-color: #C19A6B;
+    -fx-border-radius: 5;
     -fx-background-radius: 5;
 }
 
 .text-field:focused {
-    -fx-background-color: #fbe8db; /* Slightly darker beige */
-    -fx-border-color: #8B4513;     /* Saddle brown border */
+    -fx-background-color: #fbe8db;
+    -fx-border-color: #8B4513;
 }
 
 .button {
@@ -38,7 +38,7 @@
 }
 
 .scroll-bar {
-    -fx-font-size: 10px;  /* Change width of scroll bar. */
+    -fx-font-size: 10px;
     -fx-background-color: main-color;
 }
 
