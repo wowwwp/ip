@@ -7,8 +7,8 @@ Let's get started!
 >
 > * Words in CAPS are parameters to be filled in by the user.
 >
-> * DATE should be in dd/MM/yyyy HHmm (20/10/2023 1600) or dd/MM/yyyy h.mma (20/10/2023 4.00PM) format for it to be parsed properly.
-> AM/PM must be in caps
+> * DATE should be in dd/MM/yyyy HHmm (20/10/2023 1600) or dd/MM/yyyy h.mma (20/10/2023 4.00PM) format for it to be 
+> parsed properly. AM/PM must be in caps
 > * DATE which is not valid would be corrected to the nearest valid date eg 31/06/2002 would be corrected to 30/06/2002
 > 
 > * INDEX should be valid task number, it should be between 1 and the number of tasks in your list.
@@ -107,32 +107,50 @@ in the following path `./data/tasks.json`
 
 1) ToDo
 
-`
- {
-"type": "ToDo",
-"completed": false,
-"name": "see stars",
-"dates": []
-}`
+```
+{"type": "ToDo","completed": false,"name": "see stars","dates": []}
+```
 
 2) Deadline
 
- `
- {"type": "Deadline",
-"completed": true,
-"name": "nap ",
-"dates": ["2025-12-12T13:00"]}
- `
+```
+{"type": "Deadline","completed": true,"name": "nap ","dates": ["2025-12-12T13:00"]}
+```
 
 3. Event
 
-`
-{
-"type": "Event",
-"completed": true,
-"name": "watch movie ",
-"dates": ["2022-10-13T14:00","2022-10-14T16:00"]
-}`
+```
+{"type": "Event","completed": true,"name": "watch movie ","dates": ["2022-10-13T14:00","2022-10-14T16:00"]}
+```
+
+**Organising Tasks in the file**
+```
+[
+  {
+    "type": "ToDo",
+    "completed": false,
+    "name": "read books",
+    "dates": []
+  },
+  {
+    "type": "Deadline",
+    "completed": true,
+    "name": "assignment 1 ",
+    "dates": [
+      "2025-10-12T00:00"
+    ]
+  },
+  {
+    "type": "Event",
+    "completed": false,
+    "name": "watch movie ",
+    "dates": [
+      "2025-10-21T16:00",
+      "2025-10-21T19:00"
+    ]
+  }
+]
+```
 
 
 
