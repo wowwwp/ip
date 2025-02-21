@@ -27,7 +27,7 @@ Format: `todo TASK DESCRIPTION`
 Example: `todo read books`
 
 
-## Adding deadlines: `deadlines`
+## Adding deadlines: `deadline`
 
 Adds a deadline to the list of tasks. These are tasks with an end date.
 

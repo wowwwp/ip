@@ -25,11 +25,11 @@ public abstract class Task {
     private boolean isDone;
 
     /**
-     * Instanitates a {@link Task}
+     * Instantiates a {@link Task}
      * @param description description of the task.
      */
     public Task(String description) {
-        this.description = description;
+        this.description = description.trim();
         this.isDone = false;
     }
 
@@ -41,7 +41,7 @@ public abstract class Task {
      * @param isDone boolean to signify if it is done
      */
     public Task(String description, boolean isDone) {
-        this.description = description;
+        this.description = description.trim();
         this.isDone = isDone;
     }
 
@@ -75,7 +75,7 @@ public abstract class Task {
      */
     public void checkUndone() {
         if (!isDone) {
-            throw new InvalidCommand("You can't keep marking a task undone....");
+            throw new InvalidCommand("You can't unmark something which is not done....");
         }
     }
 
